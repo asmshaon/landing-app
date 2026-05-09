@@ -1,4 +1,5 @@
 import { Navbar } from "./components/Navbar";
+import { ScrollProgress } from "./components/ScrollProgress";
 import { Hero } from "./sections/Hero";
 import { ClientLogos } from "./sections/ClientLogos";
 import { Services } from "./sections/Services";
@@ -10,6 +11,7 @@ import { FooterCTA, Footer } from "./sections/Footer";
 export default function Home() {
   return (
     <div className="min-h-full">
+      <ScrollProgress />
       <Navbar />
       <Hero />
       <ClientLogos />

@@ -146,6 +146,54 @@ body {
   animation: float 6s ease-in-out infinite;
 }
 
+/* Scroll Progress Indicator */
+.scroll-progress-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: rgba(124, 58, 237, 0.1);
+  z-index: 100;
+}
+
+.scroll-progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #7c3aed 0%, #a78bfa 100%);
+  transition: width 0.1s ease-out;
+  box-shadow: 0 0 10px rgba(124, 58, 237, 0.5);
+}
+
+/* Navbar active link underline */
+.landing-nav-link {
+  position: relative;
+  color: #94a3b8;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: color 0.3s ease;
+  padding: 0.5rem 0;
+  text-decoration: none;
+}
+
+.landing-nav-link:hover {
+  color: #f8fafc;
+}
+
+.landing-nav-link.active {
+  color: #a78bfa;
+}
+
+.landing-nav-link.active::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #7c3aed 0%, #a78bfa 100%);
+  border-radius: 1px;
+}
+
 /* Scrollbar */
 ::-webkit-scrollbar { width: 8px; }
 ::-webkit-scrollbar-track { background: #0a0a0f; }
