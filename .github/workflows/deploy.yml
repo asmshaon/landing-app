@@ -48,6 +48,6 @@ jobs:
             echo "➡️ Restart app (PM2)"
             pm2 describe landing-app > /dev/null \
               && pm2 reload landing-app \
-              || pm2 start npm --name "landing-app" -- start
+              || pm2 start npm --name "landing-app" -- start -- --port 3000
 
             echo "✅ Deployment completed"
