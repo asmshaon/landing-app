@@ -1,0 +1,53 @@
+name: Deploy to Server
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy to server via SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: 22
+          script: |
+            set -e
+            trap 'echo "❌ Deployment failed at line $LINENO"' ERR
+
+            echo "➡️ Load NVM"
+            export NVM_DIR="$HOME/.nvm"
+            [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+
+            echo "➡️ Use Node version"
+            nvm use --lts
+
+            export NODE_ENV=production
+
+            echo "➡️ Go to project directory"
+            cd /var/www/landing
+
+            echo "➡️ Pull latest code"
+            git pull origin main
+
+            echo "➡️ Clean previous build"
+            rm -rf .next
+
+            echo "➡️ Install dependencies"
+            npm ci --include=dev
+
+            echo "➡️ Build Next.js app"
+            npm run build
+
+            echo "➡️ Restart app (PM2)"
+            pm2 describe landing-app > /dev/null \
+              && pm2 reload landing-app \
+              || pm2 start npm --name "landing-app" -- start
+
+            echo "✅ Deployment completed"
