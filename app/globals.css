@@ -33,15 +33,21 @@
 :root {
   --background: #f8fafc;
   --foreground: #0f172a;
+  --accent: #7c3aed;
+  --accent-hover: #6d28d9;
 }
 
 .dark {
   --background: #050507;
   --foreground: #f8fafc;
+  --accent: #7c3aed;
+  --accent-hover: #6d28d9;
 }
 
 html {
   scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: var(--accent) var(--background);
 }
 
 body {
@@ -196,6 +202,6 @@ body {
 
 /* Scrollbar */
 ::-webkit-scrollbar { width: 8px; }
-::-webkit-scrollbar-track { background: #0a0a0f; }
-::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
-::-webkit-scrollbar-thumb:hover { background: #555; }
+::-webkit-scrollbar-track { background: var(--background); }
+::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--accent-hover); }
