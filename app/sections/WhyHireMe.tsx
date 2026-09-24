@@ -1,66 +1,45 @@
-import { Target, Layers, ShieldCheck, Zap, MessageCircle } from "lucide-react";
-
 const values = [
   {
-    icon: Target,
-    iconBg: "bg-accent/20",
-    iconColor: "text-accent-light",
-    title: "Business-Focused Approach",
-    description: "I focus on solving real business problems and delivering measurable results.",
+    title: "Business first",
+    description: "I start from the business problem and measure the work by what it changes.",
   },
   {
-    icon: Layers,
-    iconBg: "bg-blue-500/20",
-    iconColor: "text-blue-400",
-    title: "Architecture-First Mindset",
-    description: "I design scalable, maintainable, and future-proof architecture from day one.",
+    title: "Thinks ahead",
+    description: "Systems that keep working as the business grows, without needing a rewrite.",
   },
   {
-    icon: ShieldCheck,
-    iconBg: "bg-green-500/20",
-    iconColor: "text-green-400",
-    title: "End-to-End Ownership",
-    description: "From planning and development to deployment and optimization, I handle the full lifecycle.",
+    title: "Stays after launch",
+    description: "Planning, building, releasing and improving. I stay with a system after it ships.",
   },
   {
-    icon: Zap,
-    iconBg: "bg-purple-500/20",
-    iconColor: "text-purple-400",
-    title: "Modern & AI-Assisted Development",
-    description: "I leverage AI tools and modern workflows to build faster without compromising quality.",
+    title: "Remote-ready ownership",
+    description: "Async across time zones. I pick up work, unblock myself and keep progress visible.",
   },
   {
-    icon: MessageCircle,
-    iconBg: "bg-pink-500/20",
-    iconColor: "text-pink-400",
-    title: "Clear Communication & Reliability",
-    description: "Transparent communication, on-time delivery, and long-term relationship are my priorities.",
+    title: "Clear and dependable",
+    description: "Plain updates, deadlines kept, and long-term working relationships.",
   },
 ];
 
 export function WhyHireMe() {
   return (
-    <section id="why-me" className="section-dark py-20 lg:py-28">
+    <section
+      id="why-me"
+      className="bg-white dark:bg-dark-900 border-t border-slate-200 dark:border-dark-600 py-20 lg:py-24"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <div className="text-accent-light text-xs font-bold uppercase tracking-widest mb-3">
-            Why Clients Hire Me
-          </div>
-          <h2 className="text-3xl lg:text-4xl font-bold text-white mb-4">
-            More Than Code. I Deliver Value.
+        <div className="max-w-2xl mb-12 lg:mb-14">
+          <p className="eyebrow mb-3">Why Teams Work With Me</p>
+          <h2 className="font-display font-medium text-accent text-4xl lg:text-5xl leading-tight">
+            Reliable in the parts that matter
           </h2>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-6">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-px bg-slate-200 dark:bg-dark-600 border border-slate-200 dark:border-dark-600">
           {values.map((value) => (
-            <div key={value.title} className="value-card rounded-2xl p-6 text-center">
-              <div
-                className={`w-12 h-12 rounded-xl ${value.iconBg} flex items-center justify-center mx-auto mb-4`}
-              >
-                <value.icon className={`w-6 h-6 ${value.iconColor}`} />
-              </div>
-              <h3 className="font-bold text-white text-sm mb-2">{value.title}</h3>
-              <p className="text-gray-400 text-xs leading-relaxed">{value.description}</p>
+            <div key={value.title} className="bg-white dark:bg-dark-900 p-6 lg:p-7">
+              <h3 className="font-display text-accent text-[1.3125rem] leading-snug mb-2">{value.title}</h3>
+              <p className="text-[0.9375rem] text-slate-600 dark:text-slate-400">{value.description}</p>
             </div>
           ))}
         </div>
