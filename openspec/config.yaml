@@ -1,0 +1,48 @@
+schema: spec-driven
+
+# Project context
+# This is shown to AI when creating artifacts.
+context: |
+  Domain: single-page personal portfolio/landing site for a freelance full-stack
+  engineer (services, projects, testimonials, contact form).
+  Tech stack: Next.js 16 (App Router), React 19, TypeScript (strict), Tailwind CSS v4
+  (CSS-first config in app/globals.css, no tailwind.config), framer-motion,
+  lucide-react, next-themes. Import alias @/* maps to the repo root.
+  Next.js 16 has breaking changes versus older versions; check
+  node_modules/next/dist/docs/ before using Next.js APIs.
+  Structure: app/page.tsx stacks section components from app/sections/.
+  Site copy is hardcoded as arrays at the top of each section file. Navbar
+  navLinks ids must match each section's id. Sections are Server Components
+  unless interactive ("use client").
+  Contact form: FooterCTA in app/sections/Footer.tsx POSTs to
+  app/api/send-email/route.ts, which calls the Resend HTTP API with
+  RESEND_API_KEY from .env.
+  Theming: dark by default; Tailwind dark: variants key off the .dark class.
+  Every UI change needs both light and dark styles.
+  Verification: no test suite; use npm run lint and npm run build (build is the
+  type check).
+  Deployment: every push to main auto-deploys to production (GitHub Actions ->
+  SSH -> npm build -> PM2 on port 3000). Runs as a Node server; do not
+  reintroduce static export.
+
+# Per-artifact rules (optional)
+# Add custom rules for specific artifacts.
+# Example:
+#   rules:
+#     proposal:
+#       - Keep proposals under 500 words
+#       - Always include a "Non-goals" section
+#     tasks:
+#       - Break tasks into chunks of max 2 hours
+
+# Per-operation guidance (optional)
+# Add advisory guidance for how apply and archive work should be conducted.
+# This is separate from artifact rules above.
+# Example:
+#   operations:
+#     apply:
+#       guidance:
+#         - Keep test summaries concise
+#     archive:
+#       guidance:
+#         - Summarize the archive outcome before finishing

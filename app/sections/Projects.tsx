@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
+import { SlashList } from "../components/SlashList";
 
 const projects = [
   {
@@ -36,12 +37,13 @@ export function Projects() {
     <section id="portfolio" className="bg-slate-50 dark:bg-dark-800 py-20 lg:py-28 border-t border-slate-200 dark:border-dark-600">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <div className="text-accent text-xs font-bold uppercase tracking-widest mb-3">Featured Projects</div>
+          <div className="text-accent text-xs font-bold uppercase tracking-widest mb-3">Selected Work</div>
           <h2 className="text-3xl lg:text-4xl font-bold text-slate-900 dark:text-white mb-4">
-            Real Solutions. Real Impact.
+            Production Systems at Scale
           </h2>
           <p className="text-slate-500 dark:text-gray-400 max-w-2xl mx-auto">
-            Here are some of the projects I&apos;ve developed and built for clients.
+            Systems I designed, built and ran in production &mdash; handling real traffic, real
+            money and real operational load.
           </p>
         </div>
 
@@ -63,13 +65,10 @@ export function Projects() {
               <div className="p-6">
                 <h3 className="font-bold text-slate-900 dark:text-white text-lg mb-2">{project.title}</h3>
                 <p className="text-slate-500 dark:text-gray-400 text-sm mb-4">{project.description}</p>
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {project.tech.map((t) => (
-                    <span key={t} className="tech-tag">
-                      {t}
-                    </span>
-                  ))}
-                </div>
+                <SlashList
+                  items={project.tech}
+                  className="text-slate-600 dark:text-gray-400 text-sm mb-4"
+                />
                 <div className="text-accent text-sm font-medium mb-4">Result: {project.result}</div>
                 <a
                   href={project.link}

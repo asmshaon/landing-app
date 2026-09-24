@@ -1,4 +1,4 @@
-import { Server, Monitor, Sparkles, CloudCog } from "lucide-react";
+import { Server, Monitor, CloudCog } from "lucide-react";
 
 const services = [
   {
@@ -8,11 +8,11 @@ const services = [
     title: "Backend Engineering",
     items: [
       "Scalable API Architecture",
-      "Laravel / NestJS Development",
-      "Authentication & RBAC",
+      "Laravel & PHP Development",
+      "Python & FastAPI Services",
+      "Node.js / NestJS / Express.js",
       "Database Design & Optimization",
       "Queue Systems & Async Jobs",
-      "Payment & Third-Party Integrations",
     ],
   },
   {
@@ -27,20 +27,6 @@ const services = [
       "Responsive & High Performance",
       "Real-time Features",
       "Dashboard & Admin Panels",
-    ],
-  },
-  {
-    icon: Sparkles,
-    iconColor: "text-violet-600",
-    iconBg: "bg-violet-100",
-    title: "AI & Automation",
-    items: [
-      "LLM Integrations (OpenAI, Claude)",
-      "AI Chat & Assistant Systems",
-      "Workflow Automation",
-      "RAG & Vector Search Solutions",
-      "AI-powered Business Tools",
-      "Data Processing & Insights",
     ],
   },
   {
@@ -66,14 +52,14 @@ export function Services() {
         <div className="text-center mb-16">
           <div className="text-accent text-xs font-bold uppercase tracking-widest mb-3">What I Do</div>
           <h2 className="text-3xl lg:text-4xl font-bold text-slate-900 dark:text-white mb-4">
-            End-to-End Solutions That Drive Results
+            Full-Stack Engineering, End to End
           </h2>
           <p className="text-slate-500 dark:text-gray-400 max-w-2xl mx-auto">
-            From architecture to deployment, I provide complete solutions that help your business grow and scale.
+            What I bring to a team: from architecture and implementation through to production and scale.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {services.map((service) => (
             <div
               key={service.title}

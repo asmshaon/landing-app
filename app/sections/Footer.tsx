@@ -1,46 +1,22 @@
 "use client";
 
 import { useState } from "react";
-import { ArrowRight, Phone, FileText, MapPin, Mail, MapPinned, MessageSquare } from "lucide-react";
+import { ArrowRight, MapPin, Mail, MapPinned, MessageSquare } from "lucide-react";
 
 export function FooterCTA() {
   return (
-    <section id="contact" className="section-dark py-20 lg:py-28 border-t border-white/5">
+    <section
+      id="contact"
+      className="section-dark scroll-mt-20 py-20 lg:py-28 border-t border-white/5"
+    >
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <h2 className="text-3xl lg:text-4xl font-bold text-white mb-4">
-          Let&apos;s Build Something Great Together
+          Let&apos;s Work Together
         </h2>
         <p className="text-gray-400 mb-10">
-          Have a project in mind? Let&apos;s discuss how I can help you achieve your goals.
+          Hiring for a remote role or a long-term contract? Tell me what you&apos;re building and
+          I&apos;ll get back to you.
         </p>
-
-        <div className="flex flex-wrap justify-center gap-4 mb-16">
-          <a
-            href="https://www.upwork.com/freelancers/~0144413bdd55c4bd39"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-primary inline-flex items-center gap-2 text-white px-8 py-3.5 rounded-xl text-sm font-semibold"
-          >
-            Hire Me
-            <ArrowRight className="w-4 h-4" />
-          </a>
-          <a
-            href="https://calendly.com/asmshaon/new-meeting"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-outline inline-flex items-center gap-2 text-white px-8 py-3.5 rounded-xl text-sm font-semibold"
-          >
-            Book a Call
-            <Phone className="w-4 h-4" />
-          </a>
-          <a
-            href="mailto:srabon.php@gmail.com?subject=Project%20Quote%20Request"
-            className="btn-outline inline-flex items-center gap-2 text-white px-8 py-3.5 rounded-xl text-sm font-semibold"
-          >
-            Get a Quote
-            <FileText className="w-4 h-4" />
-          </a>
-        </div>
 
         <ContactForm />
       </div>
@@ -203,7 +179,7 @@ function ContactForm() {
               onChange={handleChange}
               required
               className="w-full px-4 py-3 rounded-lg bg-dark-800 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-accent/50 focus:ring-1 focus:ring-accent/50 transition-colors"
-              placeholder="Project inquiry"
+              placeholder="Senior full-stack engineer role"
             />
           </div>
 
@@ -219,7 +195,7 @@ function ContactForm() {
               required
               rows={5}
               className="w-full px-4 py-3 rounded-lg bg-dark-800 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-accent/50 focus:ring-1 focus:ring-accent/50 transition-colors resize-none"
-              placeholder="Tell me about your project..."
+              placeholder="Tell me about the role or contract, your team and your stack..."
             ></textarea>
           </div>
 

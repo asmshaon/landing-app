@@ -3,6 +3,7 @@ import { ScrollProgress } from "./components/ScrollProgress";
 import { Hero } from "./sections/Hero";
 import { ClientLogos } from "./sections/ClientLogos";
 import { Services } from "./sections/Services";
+import { Stack } from "./sections/Stack";
 import { Projects } from "./sections/Projects";
 import { WhyHireMe } from "./sections/WhyHireMe";
 import { Testimonials } from "./sections/Testimonials";
@@ -16,6 +17,7 @@ export default function Home() {
       <Hero />
       <ClientLogos />
       <Services />
+      <Stack />
       <Projects />
       <WhyHireMe />
       <Testimonials />

@@ -10,9 +10,9 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Abu Saleh - Full-Stack Engineer",
+  title: "Abu Saleh - Senior Full-Stack Software Engineer",
   description:
-    "15+ years of experience building production-grade web applications and AI-powered systems. I help businesses turn ideas into scalable, secure, and high-performance software.",
+    "Senior full-stack software engineer with 15+ years building production systems in PHP / Laravel, Python / FastAPI, TypeScript and Next.js. Open to remote roles, full-time or long-term contract.",
 };
 
 export default function RootLayout({

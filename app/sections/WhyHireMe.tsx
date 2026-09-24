@@ -19,15 +19,15 @@ const values = [
     icon: ShieldCheck,
     iconBg: "bg-green-500/20",
     iconColor: "text-green-400",
-    title: "End-to-End Ownership",
-    description: "From planning and development to deployment and optimization, I handle the full lifecycle.",
+    title: "Full Lifecycle Delivery",
+    description: "Planning, development, deployment and optimization — I stay with a system after it ships.",
   },
   {
     icon: Zap,
     iconBg: "bg-purple-500/20",
     iconColor: "text-purple-400",
-    title: "Modern & AI-Assisted Development",
-    description: "I leverage AI tools and modern workflows to build faster without compromising quality.",
+    title: "Remote-Ready Ownership",
+    description: "Async by default across time zones: I pick up work, unblock myself, and keep progress visible.",
   },
   {
     icon: MessageCircle,
@@ -44,10 +44,10 @@ export function WhyHireMe() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <div className="text-accent-light text-xs font-bold uppercase tracking-widest mb-3">
-            Why Clients Hire Me
+            Why Teams Work With Me
           </div>
           <h2 className="text-3xl lg:text-4xl font-bold text-white mb-4">
-            More Than Code. I Deliver Value.
+            More Than Code. I Deliver Outcomes.
           </h2>
         </div>
 

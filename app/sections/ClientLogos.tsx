@@ -13,8 +13,8 @@ export function ClientLogos() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col sm:flex-row items-center justify-center gap-8 lg:gap-16">
           <div className="text-gray-500 text-sm text-center sm:text-left shrink-0">
-            <div className="font-medium text-gray-400">Trusted by clients</div>
-            <div className="text-xs">from {countries.length} countries</div>
+            <div className="font-medium text-gray-400">Worked remotely with teams</div>
+            <div className="text-xs">across {countries.length} countries</div>
           </div>
           <div className="flex flex-wrap items-center justify-center gap-6 lg:gap-10">
             {countries.map((c) => (

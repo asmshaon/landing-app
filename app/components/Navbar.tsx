@@ -113,7 +113,7 @@ export function Navbar() {
               </div>
               <div className="hidden sm:block">
                 <div className="text-white font-semibold text-sm leading-tight">Abu Saleh</div>
-                <div className="text-gray-400 text-xs leading-tight">Senior Software Engineer</div>
+                <div className="text-gray-400 text-xs leading-tight">Senior Full-Stack Software Engineer</div>
               </div>
             </Link>
 
@@ -172,7 +172,7 @@ export function Navbar() {
                 onClick={(e) => scrollToSection(e, "contact")}
                 className="hidden sm:inline-flex btn-primary text-white px-5 py-2 rounded-lg text-sm font-medium items-center gap-2"
               >
-                Hire Me
+                Contact
                 <ArrowRight className="w-4 h-4" />
               </a>
 
