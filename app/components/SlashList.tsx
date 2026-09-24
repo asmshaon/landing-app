@@ -12,7 +12,7 @@ export function SlashList({
       {items.map((item, i) => (
         <Fragment key={item}>
           {i > 0 && (
-            <span aria-hidden="true" className="text-accent/60">
+            <span aria-hidden="true" className="text-slate-400 dark:text-slate-600">
               /
             </span>
           )}

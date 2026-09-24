@@ -1,22 +1,63 @@
 "use client";
 
 import { useState } from "react";
-import { ArrowRight, MapPin, Mail, MapPinned, MessageSquare } from "lucide-react";
+import { ArrowRight, CheckCircle, AlertCircle } from "lucide-react";
+
+const steps = [
+  {
+    title: "You describe the problem",
+    detail: "A few lines about what you're building or what isn't working.",
+  },
+  {
+    title: "I reply with questions and first thoughts",
+    detail: "So we both understand the problem before talking solutions.",
+  },
+  {
+    title: "We decide together",
+    detail: "If it's a good fit, we plan the next step. If not, you still leave with ideas.",
+  },
+];
+
+const socialLinks = [
+  { label: "LinkedIn", href: "https://www.linkedin.com/in/asmshaon" },
+  { label: "GitHub", href: "https://github.com/asmshaon" },
+  { label: "X", href: "https://x.com/asmshaon" },
+  { label: "Portfolio", href: "https://portfolio.asmshaon.tech/" },
+  { label: "Blog", href: "https://blog.asmshaon.tech/" },
+];
 
 export function FooterCTA() {
   return (
     <section
       id="contact"
-      className="section-dark scroll-mt-20 py-20 lg:py-28 border-t border-white/5"
+      className="bg-white dark:bg-dark-900 scroll-mt-20 border-t border-slate-200 dark:border-dark-600 py-20 lg:py-24"
     >
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 className="text-3xl lg:text-4xl font-bold text-white mb-4">
-          Let&apos;s Work Together
-        </h2>
-        <p className="text-gray-400 mb-10">
-          Hiring for a remote role or a long-term contract? Tell me what you&apos;re building and
-          I&apos;ll get back to you.
-        </p>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-[1fr_1.1fr] gap-12 lg:gap-16">
+        <div>
+          <p className="eyebrow mb-3">Let&apos;s talk</p>
+          <h2 className="font-display font-medium text-accent text-4xl lg:text-[3.25rem] leading-[1.05]">
+            Got a problem worth solving?
+          </h2>
+          <p className="mt-4 mb-8 max-w-md text-lg text-slate-600 dark:text-slate-400">
+            Tell me what you&apos;re building or what&apos;s in the way, and we&apos;ll take it from there.
+          </p>
+
+          <p className="eyebrow mb-2">What happens next</p>
+          <ol className="border-b border-slate-200 dark:border-dark-600">
+            {steps.map((step, i) => (
+              <li
+                key={step.title}
+                className="grid grid-cols-[2.5rem_1fr] gap-x-3 py-4 border-t border-slate-200 dark:border-dark-600"
+              >
+                <span className="row-span-2 w-8 h-8 rounded-full border border-accent flex items-center justify-center font-display text-accent">
+                  {i + 1}
+                </span>
+                <span className="font-semibold text-accent">{step.title}</span>
+                <span className="text-[0.9375rem] text-slate-600 dark:text-slate-400">{step.detail}</span>
+              </li>
+            ))}
+          </ol>
+        </div>
 
         <ContactForm />
       </div>
@@ -80,161 +121,132 @@ function ContactForm() {
   };
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 text-left">
-      {/* Contact Info */}
-      <div className="lg:col-span-2 space-y-6">
-        <div className="flex items-start gap-4 p-4 rounded-xl bg-white/5 border border-white/10">
-          <div className="w-10 h-10 rounded-lg bg-accent/20 flex items-center justify-center shrink-0">
-            <MapPinned className="w-5 h-5 text-accent-light" />
-          </div>
-          <div>
-            <h4 className="text-white font-medium text-sm mb-1">Location</h4>
-            <p className="text-gray-400 text-sm">Dhaka, Bangladesh</p>
-          </div>
+    <form
+      onSubmit={handleSubmit}
+      className="self-start p-6 sm:p-7 rounded-md bg-white dark:bg-dark-900 border border-slate-200 dark:border-dark-600 space-y-5"
+    >
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+        <div className="space-y-2">
+          <label htmlFor="name" className="text-sm text-accent font-medium">
+            Your name
+          </label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+            required
+            className="w-full px-3.5 py-3 rounded-md bg-slate-50 dark:bg-dark-800 border border-slate-300 dark:border-dark-500 text-accent placeholder-slate-500 dark:placeholder-slate-500 focus:outline-none focus:border-accent focus:ring-2 focus:ring-slate-200 dark:focus:ring-dark-600 transition-colors"
+            placeholder="Jane Smith"
+          />
         </div>
 
-        <div className="flex items-start gap-4 p-4 rounded-xl bg-white/5 border border-white/10">
-          <div className="w-10 h-10 rounded-lg bg-accent/20 flex items-center justify-center shrink-0">
-            <MessageSquare className="w-5 h-5 text-accent-light" />
-          </div>
-          <div>
-            <h4 className="text-white font-medium text-sm mb-1">WhatsApp</h4>
-            <p className="text-gray-400 text-sm">+88 01748 966 158</p>
-          </div>
-        </div>
-
-        <div className="flex items-start gap-4 p-4 rounded-xl bg-white/5 border border-white/10">
-          <div className="w-10 h-10 rounded-lg bg-accent/20 flex items-center justify-center shrink-0">
-            <Mail className="w-5 h-5 text-accent-light" />
-          </div>
-          <div>
-            <h4 className="text-white font-medium text-sm mb-1">Email</h4>
-            <p className="text-gray-400 text-sm">srabon.php@gmail.com</p>
-          </div>
-        </div>
-
-        <div className="rounded-xl overflow-hidden border border-white/10">
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d233668.06396724427!2d90.25487796061215!3d23.780753659692634!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755b8b087026b81%3A0x8fa563bbdd5904c2!2sDhaka%2C%20Bangladesh!5e0!3m2!1sen!2s!4v1732713600000!5m2!1sen!2s"
-            width="100%"
-            height="200"
-            style={{ border: 0 }}
-            allowFullScreen
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-            title="Dhaka, Bangladesh Map"
-          ></iframe>
+        <div className="space-y-2">
+          <label htmlFor="email" className="text-sm text-accent font-medium">
+            Your email
+          </label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            required
+            className="w-full px-3.5 py-3 rounded-md bg-slate-50 dark:bg-dark-800 border border-slate-300 dark:border-dark-500 text-accent placeholder-slate-500 dark:placeholder-slate-500 focus:outline-none focus:border-accent focus:ring-2 focus:ring-slate-200 dark:focus:ring-dark-600 transition-colors"
+            placeholder="jane@company.com"
+          />
         </div>
       </div>
 
-      {/* Contact Form */}
-      <div className="lg:col-span-3">
-        <form
-          onSubmit={handleSubmit}
-          className="p-6 rounded-2xl bg-white/5 border border-white/10 space-y-5"
+      <div className="space-y-2">
+        <label htmlFor="subject" className="text-sm text-accent font-medium">
+          Subject
+        </label>
+        <input
+          type="text"
+          id="subject"
+          name="subject"
+          value={formData.subject}
+          onChange={handleChange}
+          required
+          className="w-full px-3.5 py-3 rounded-md bg-slate-50 dark:bg-dark-800 border border-slate-300 dark:border-dark-500 text-accent placeholder-slate-500 dark:placeholder-slate-500 focus:outline-none focus:border-accent focus:ring-2 focus:ring-slate-200 dark:focus:ring-dark-600 transition-colors"
+          placeholder="What would you like to solve?"
+        />
+      </div>
+
+      <div className="space-y-2">
+        <label htmlFor="message" className="text-sm text-accent font-medium">
+          Message
+        </label>
+        <textarea
+          id="message"
+          name="message"
+          value={formData.message}
+          onChange={handleChange}
+          required
+          rows={5}
+          className="w-full px-3.5 py-3 rounded-md bg-slate-50 dark:bg-dark-800 border border-slate-300 dark:border-dark-500 text-accent placeholder-slate-500 dark:placeholder-slate-500 focus:outline-none focus:border-accent focus:ring-2 focus:ring-slate-200 dark:focus:ring-dark-600 transition-colors resize-y"
+          placeholder="Tell me about the problem, the team and what success looks like."
+        ></textarea>
+      </div>
+
+      {statusMessage.type && (
+        <div
+          role="status"
+          className={`flex items-center gap-2.5 px-4 py-3 rounded-md text-sm font-medium text-accent border ${
+            statusMessage.type === "success"
+              ? "border-accent"
+              : "border-dashed border-accent bg-slate-50 dark:bg-dark-800"
+          }`}
         >
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-            <div className="space-y-2">
-              <label htmlFor="name" className="text-sm text-gray-300 font-medium">
-                Your Name
-              </label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-                required
-                className="w-full px-4 py-3 rounded-lg bg-dark-800 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-accent/50 focus:ring-1 focus:ring-accent/50 transition-colors"
-                placeholder="John Doe"
-              />
-            </div>
-
-            <div className="space-y-2">
-              <label htmlFor="email" className="text-sm text-gray-300 font-medium">
-                Your Email
-              </label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                required
-                className="w-full px-4 py-3 rounded-lg bg-dark-800 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-accent/50 focus:ring-1 focus:ring-accent/50 transition-colors"
-                placeholder="john@example.com"
-              />
-            </div>
-          </div>
-
-          <div className="space-y-2">
-            <label htmlFor="subject" className="text-sm text-gray-300 font-medium">
-              Subject
-            </label>
-            <input
-              type="text"
-              id="subject"
-              name="subject"
-              value={formData.subject}
-              onChange={handleChange}
-              required
-              className="w-full px-4 py-3 rounded-lg bg-dark-800 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-accent/50 focus:ring-1 focus:ring-accent/50 transition-colors"
-              placeholder="Senior full-stack engineer role"
-            />
-          </div>
-
-          <div className="space-y-2">
-            <label htmlFor="message" className="text-sm text-gray-300 font-medium">
-              Message
-            </label>
-            <textarea
-              id="message"
-              name="message"
-              value={formData.message}
-              onChange={handleChange}
-              required
-              rows={5}
-              className="w-full px-4 py-3 rounded-lg bg-dark-800 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-accent/50 focus:ring-1 focus:ring-accent/50 transition-colors resize-none"
-              placeholder="Tell me about the role or contract, your team and your stack..."
-            ></textarea>
-          </div>
-
-          {statusMessage.type && (
-            <div
-              className={`px-4 py-3 rounded-lg text-sm font-medium ${
-                statusMessage.type === "success"
-                  ? "bg-green-500/10 border border-green-500/30 text-green-400"
-                  : "bg-red-500/10 border border-red-500/30 text-red-400"
-              }`}
-            >
-              {statusMessage.message}
-            </div>
+          {statusMessage.type === "success" ? (
+            <CheckCircle className="w-4 h-4 shrink-0" />
+          ) : (
+            <AlertCircle className="w-4 h-4 shrink-0" />
           )}
+          {statusMessage.message}
+        </div>
+      )}
 
-          <button
-            type="submit"
-            disabled={isLoading}
-            className="w-full sm:w-auto btn-primary text-white px-8 py-3 rounded-xl text-sm font-semibold inline-flex items-center justify-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed"
-          >
-            {isLoading ? "Sending..." : "Send Message"}
-            <ArrowRight className="w-4 h-4" />
-          </button>
-        </form>
-      </div>
-    </div>
+      <button
+        type="submit"
+        disabled={isLoading}
+        className="w-full sm:w-auto btn-primary px-7 py-3 rounded-md text-sm font-semibold inline-flex items-center justify-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed"
+      >
+        {isLoading ? "Sending..." : "Send message"}
+        <ArrowRight className="w-4 h-4" />
+      </button>
+    </form>
   );
 }
 
+// Stays black in both themes as the page's closing band.
 export function Footer() {
   return (
-    <footer className="bg-dark-900 border-t border-white/5 py-8">
+    <footer className="bg-dark-900 text-slate-400 border-t border-dark-600 pt-12 pb-10 text-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-          <div className="text-gray-500 text-sm">&copy; {new Date().getFullYear()} <strong>asmshaon</strong>. All rights reserved.</div>
-          <div className="flex items-center gap-2 text-gray-500 text-sm">
-            <MapPin className="w-4 h-4" />
-            Bangladesh, GMT+6
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 pb-8 border-b border-dark-600">
+          <div>
+            <div className="font-display text-2xl text-slate-100">Abu Saleh</div>
+            <div className="mt-1">Senior Full-Stack Software Engineer · Bangladesh, GMT+6</div>
           </div>
+          <nav aria-label="Profiles" className="flex flex-wrap gap-x-6 gap-y-2">
+            {socialLinks.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-slate-100 hover:underline underline-offset-4"
+              >
+                {link.label}
+              </a>
+            ))}
+          </nav>
+        </div>
+        <div className="pt-6 text-xs">
+          &copy; {new Date().getFullYear()} Abu Saleh Muhammad Shaon. All rights reserved.
         </div>
       </div>
     </footer>

@@ -7,11 +7,11 @@ import Link from "next/link";
 
 const navLinks = [
   { id: "home", label: "Home" },
-  { id: "services", label: "Services" },
-  { id: "portfolio", label: "Portfolio" },
+  { id: "services", label: "What I Do" },
+  { id: "work", label: "Work" },
+  { id: "experience", label: "Experience" },
   { id: "why-me", label: "Why Me" },
   { id: "testimonials", label: "Testimonials" },
-  { id: "contact", label: "Contact" },
 ];
 
 function ThemeToggle() {
@@ -25,7 +25,7 @@ function ThemeToggle() {
 
   if (!mounted) {
     return (
-      <button className="text-gray-400 hover:text-white transition-colors p-2" aria-label="Toggle theme">
+      <button className="text-slate-600 dark:text-gray-400 hover:text-accent transition-colors p-2" aria-label="Toggle theme">
         <div className="w-5 h-5" />
       </button>
     );
@@ -34,7 +34,7 @@ function ThemeToggle() {
   return (
     <button
       onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-      className="text-gray-400 hover:text-white transition-colors p-2"
+      className="text-slate-600 dark:text-gray-400 hover:text-accent transition-colors p-2"
       aria-label="Toggle theme"
     >
       {theme === "dark" ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
@@ -99,7 +99,7 @@ export function Navbar() {
 
   return (
     <>
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-dark-900/80 backdrop-blur-xl border-b border-white/5">
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-white/85 dark:bg-dark-900/85 backdrop-blur-xl border-b border-slate-200 dark:border-dark-600">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16 lg:h-20">
             {/* Logo */}
@@ -108,17 +108,17 @@ export function Navbar() {
               rel="noopener noreferrer"
               className="flex items-center gap-2"
             >
-              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-accent to-accent-light flex items-center justify-center">
-                <span className="text-white font-bold text-sm">AS</span>
+              <div className="w-8 h-8 rounded-md bg-accent flex items-center justify-center">
+                <span className="text-ink-inverse font-display font-semibold text-sm">AS</span>
               </div>
               <div className="hidden sm:block">
-                <div className="text-white font-semibold text-sm leading-tight">Abu Saleh</div>
-                <div className="text-gray-400 text-xs leading-tight">Senior Full-Stack Software Engineer</div>
+                <div className="font-display text-accent font-semibold text-base leading-tight">Abu Saleh</div>
+                <div className="text-slate-600 dark:text-gray-400 text-xs leading-tight">Senior Full-Stack Software Engineer</div>
               </div>
             </Link>
 
             {/* Desktop Links */}
-            <div className="hidden lg:flex items-center gap-8">
+            <div className="hidden lg:flex items-center gap-6 xl:gap-8">
               {navLinks.map((link) => (
                 <a
                   key={link.id}
@@ -138,7 +138,7 @@ export function Navbar() {
                 href="https://www.linkedin.com/in/asmshaon"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hidden sm:flex text-gray-400 hover:text-white transition-colors p-2"
+                className="hidden xl:flex text-slate-600 dark:text-gray-400 hover:text-accent transition-colors p-2"
                 aria-label="LinkedIn"
               >
                 <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
@@ -149,7 +149,7 @@ export function Navbar() {
                 href="https://github.com/asmshaon"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hidden sm:flex text-gray-400 hover:text-white transition-colors p-2"
+                className="hidden xl:flex text-slate-600 dark:text-gray-400 hover:text-accent transition-colors p-2"
                 aria-label="GitHub"
               >
                 <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
@@ -160,7 +160,7 @@ export function Navbar() {
                 href="https://x.com/asmshaon"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hidden sm:flex text-gray-400 hover:text-white transition-colors p-2"
+                className="hidden xl:flex text-slate-600 dark:text-gray-400 hover:text-accent transition-colors p-2"
                 aria-label="X (Twitter)"
               >
                 <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
@@ -170,16 +170,16 @@ export function Navbar() {
               <a
                 href="#contact"
                 onClick={(e) => scrollToSection(e, "contact")}
-                className="hidden sm:inline-flex btn-primary text-white px-5 py-2 rounded-lg text-sm font-medium items-center gap-2"
+                className="hidden sm:inline-flex btn-primary px-5 py-2 rounded-md text-sm font-semibold items-center gap-2 whitespace-nowrap"
               >
-                Contact
+                Let&apos;s talk
                 <ArrowRight className="w-4 h-4" />
               </a>
 
               {/* Mobile Toggle */}
               <button
                 onClick={() => setIsMobileOpen(!isMobileOpen)}
-                className="lg:hidden text-gray-300 p-2"
+                className="lg:hidden text-accent p-2"
                 aria-label="Menu"
               >
                 {isMobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -191,19 +191,26 @@ export function Navbar() {
 
       {/* Mobile Dropdown */}
       {isMobileOpen && (
-        <div className="fixed top-16 left-0 right-0 bg-dark-800 border-t border-white/5 px-4 py-4 space-y-1 z-40 lg:hidden">
+        <div className="fixed top-16 left-0 right-0 bg-white dark:bg-dark-800 border-b border-slate-200 dark:border-dark-600 px-4 py-4 space-y-1 z-40 lg:hidden">
           {navLinks.map((link) => (
             <a
               key={link.id}
               href={`#${link.id}`}
               onClick={(e) => scrollToSection(e, link.id)}
               className={`block text-sm font-medium py-2 ${
-                activeSection === link.id ? "text-accent-light" : "text-gray-300"
+                activeSection === link.id ? "text-accent" : "text-slate-600 dark:text-gray-400"
               }`}
             >
               {link.label}
             </a>
           ))}
+          <a
+            href="#contact"
+            onClick={(e) => scrollToSection(e, "contact")}
+            className="block text-sm font-semibold py-2 text-accent"
+          >
+            Let&apos;s talk
+          </a>
         </div>
       )}
     </>

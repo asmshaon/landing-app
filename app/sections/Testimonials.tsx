@@ -1,4 +1,4 @@
-import { Star, ExternalLink, FolderOpen, BookOpen } from "lucide-react";
+import { Star, ArrowUpRight } from "lucide-react";
 
 
 const testimonials = [
@@ -21,81 +21,55 @@ const testimonials = [
 
 export function Testimonials() {
   return (
-    <section id="testimonials" className="bg-slate-50 dark:bg-dark-800 py-20 lg:py-28">
+    <section
+      id="testimonials"
+      className="bg-slate-50 dark:bg-dark-800 border-t border-slate-200 dark:border-dark-600 py-20 lg:py-24"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <div className="text-accent text-xs font-bold uppercase tracking-widest mb-3">Testimonials</div>
-          <h2 className="text-3xl lg:text-4xl font-bold text-slate-900 dark:text-white mb-4">
-            What It&apos;s Like to Work With Me
+        <div className="max-w-2xl mb-12 lg:mb-14">
+          <p className="eyebrow mb-3">Testimonials</p>
+          <h2 className="font-display font-medium text-accent text-4xl lg:text-5xl leading-tight">
+            What it&apos;s like to work with me
           </h2>
         </div>
 
-        {/* Testimonials */}
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-3 gap-10">
           {testimonials.map((t, idx) => (
-            <div
-              key={idx}
-              className="bg-white dark:bg-dark-700 border border-slate-200 dark:border-dark-600 rounded-xl p-6"
-            >
-              <div className="flex gap-1 mb-4">
+            <figure key={idx} className="flex flex-col gap-5 border-t border-accent pt-6">
+              <div className="flex gap-1" aria-label="5 out of 5">
                 {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-4 h-4 text-amber-400 fill-amber-400" />
+                  <Star key={i} className="w-3.5 h-3.5 text-accent fill-current" />
                 ))}
               </div>
-              <p className="text-slate-600 dark:text-gray-300 text-sm mb-6 leading-relaxed">
+              <blockquote className="font-display text-accent text-lg leading-relaxed">
                 &ldquo;{t.text}&rdquo;
-              </p>
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-slate-200 dark:bg-dark-600 flex items-center justify-center text-slate-500 dark:text-gray-400 font-bold text-sm">
+              </blockquote>
+              <figcaption className="mt-auto flex items-center gap-3 text-sm text-slate-600 dark:text-slate-400">
+                <span className="w-8 h-8 rounded-full bg-slate-100 dark:bg-dark-700 border border-slate-200 dark:border-dark-600 flex items-center justify-center text-xs font-semibold text-accent">
                   {t.initials}
-                </div>
-                <div className="font-semibold text-slate-900 dark:text-white text-sm">{t.name}</div>
-              </div>
-            </div>
+                </span>
+                {t.name}
+              </figcaption>
+            </figure>
           ))}
         </div>
 
-        {/* CTA Cards */}
-        <div className="grid md:grid-cols-2 gap-6 mt-12">
-          <div className="bg-white dark:bg-dark-700 border border-slate-200 dark:border-dark-600 rounded-2xl p-8 flex items-center justify-between">
-            <div>
-              <h3 className="font-bold text-slate-900 dark:text-white text-lg mb-2">Explore My Work</h3>
-              <p className="text-slate-500 dark:text-gray-400 text-sm mb-4">
-                See more of my projects, case studies and technical solutions.
-              </p>
-              <a
-                href="https://portfolio.asmshaon.tech/"
-                target="_blank"
-                className="inline-flex items-center gap-2 text-accent text-sm font-semibold hover:text-accent-dark transition-colors"
-              >
-                portfolio.asmshaon.tech
-                <ExternalLink className="w-4 h-4" />
-              </a>
-            </div>
-            <div className="hidden sm:flex w-24 h-24 rounded-xl bg-gradient-to-br from-indigo-100 to-purple-100 dark:from-indigo-900/30 dark:to-purple-900/30 items-center justify-center flex-shrink-0">
-              <FolderOpen className="w-12 h-12 text-indigo-400" />
-            </div>
-          </div>
-
-          <div className="bg-white dark:bg-dark-700 border border-slate-200 dark:border-dark-600 rounded-2xl p-8 flex items-center justify-between">
-            <div>
-              <h3 className="font-bold text-slate-900 dark:text-white text-lg mb-2">Read My Insights</h3>
-              <p className="text-slate-500 dark:text-gray-400 text-sm mb-4">
-                Technical articles, tutorials and insights on development and architecture.
-              </p>
-              <a
-                href="https://blog.asmshaon.tech/"
-                target={"_blank"}
-                className="inline-flex items-center gap-2 text-accent text-sm font-semibold hover:text-accent-dark transition-colors"
-              >
-                blog.asmshaon.tech
-                <ExternalLink className="w-4 h-4" />
-              </a>
-            </div>
-            <div className="hidden sm:flex w-24 h-24 rounded-xl bg-gradient-to-br from-blue-100 to-cyan-100 dark:from-blue-900/30 dark:to-cyan-900/30 items-center justify-center flex-shrink-0">
-              <BookOpen className="w-12 h-12 text-blue-400" />
-            </div>
-          </div>
+        <div className="mt-12 flex flex-wrap gap-x-8 gap-y-3 text-sm">
+          {[
+            { label: "Full portfolio", href: "https://portfolio.asmshaon.tech/" },
+            { label: "Articles on the blog", href: "https://blog.asmshaon.tech/" },
+          ].map((link) => (
+            <a
+              key={link.href}
+              href={link.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1 text-accent border-b border-slate-300 dark:border-dark-500 hover:border-accent transition-colors"
+            >
+              {link.label}
+              <ArrowUpRight className="w-4 h-4" />
+            </a>
+          ))}
         </div>
       </div>
     </section>
