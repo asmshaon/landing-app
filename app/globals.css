@@ -166,3 +166,17 @@ h3 {
 ::-webkit-scrollbar-track { background: var(--scroll-track); }
 ::-webkit-scrollbar-thumb { background: var(--ink); border-radius: 4px; }
 ::-webkit-scrollbar-thumb:hover { background: #737373; }
+
+/* Studio-style ash backdrop behind the hero portrait, so the white clothing
+   stands out from the page. Neutral greys only, in both themes. */
+.portrait-backdrop {
+  background:
+    radial-gradient(ellipse 70% 55% at 50% 32%, #ececec 0%, rgba(236, 236, 236, 0) 70%),
+    linear-gradient(180deg, #cfcfcf 0%, #a8a8a8 100%);
+}
+
+.dark .portrait-backdrop {
+  background:
+    radial-gradient(ellipse 70% 55% at 50% 32%, #3d3d3d 0%, rgba(61, 61, 61, 0) 70%),
+    linear-gradient(180deg, #2a2a2a 0%, #161616 100%);
+}
