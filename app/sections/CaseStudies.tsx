@@ -14,12 +14,12 @@ const caseStudies = [
     delivered: [
       "Moved all pricing and payments to the server, so the app can't change what a customer pays",
       "Built the money rules: commission, sales tax and service charge set per event, per vendor or platform-wide, matching to the cent on quote, charge and receipt",
-      "Wrote the first security review, then closed what it found: account takeover between vendors, leaked keys, brute-force logins, and a full audit trail of admin actions",
+      "Ran three security audits across the platform, then closed what they found: an open door that let anyone run commands on the server, account takeover between vendors, customer data exposed publicly, leaked keys and brute-force logins",
       "Automated tests that block any release that would break ordering or payments, and faster deployments",
       "Vendor tools for busy event days: pausing orders, kitchen printing, pickup codes and search",
     ],
     outcome:
-      "I wrote over 95% of the backend changes since joining and shipped 130+ fixes and features through QA. 8 security findings identified; the critical, high and medium ones were fixed within three days. The platform is in its pilot stage.",
+      "I wrote over 95% of the backend changes since joining and shipped 130+ fixes and features through QA. Three security audits found 56 issues, and I fixed 40+ of them. The platform is in its pilot stage.",
     tech: ["Laravel", "Go", "Stripe", "AWS"],
   },
   {
