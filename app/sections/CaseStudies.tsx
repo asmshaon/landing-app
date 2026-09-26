@@ -10,14 +10,16 @@ const caseStudies = [
     period: "May 2026 – present",
     role: "Lead engineer, team of 4–5",
     problem:
-      "Fans order from their seats and vendors print tickets in the truck. Prices were partly decided by the phone app, where they could be tampered with.",
+      "Fans order from their seats and vendors print tickets in the truck. The platform was heading to launch with prices partly decided by the phone app, open security gaps and no automated safety net.",
     delivered: [
       "Moved all pricing and payments to the server, so the app can't change what a customer pays",
-      "Wrote the first security review of the order services, then fixed what it found",
-      "Login protection, kitchen printing and vendor tools for busy event days",
+      "Built the money rules: commission, sales tax and service charge set per event, per vendor or platform-wide, matching to the cent on quote, charge and receipt",
+      "Wrote the first security review, then closed what it found: account takeover between vendors, leaked keys, brute-force logins, and a full audit trail of admin actions",
+      "Automated tests that block any release that would break ordering or payments, and faster deployments",
+      "Vendor tools for busy event days: pausing orders, kitchen printing, pickup codes and search",
     ],
     outcome:
-      "8 security findings identified. The critical, high and medium ones were fixed within three days. The platform is in its pilot stage.",
+      "I wrote over 95% of the backend changes since joining and shipped 130+ fixes and features through QA. 8 security findings identified; the critical, high and medium ones were fixed within three days. The platform is in its pilot stage.",
     tech: ["Laravel", "Go", "Stripe", "AWS"],
   },
   {
@@ -26,13 +28,19 @@ const caseStudies = [
     region: "United States",
     period: "Mar 2022 – Apr 2025",
     role: "Sole engineer",
-    problem: "Lawyers needed real contract examples, which were buried inside public SEC filings.",
+    problem:
+      "Lawyers needed real contract wording, buried across decades of public SEC filings in dozens of formats. The existing product ran on an old site that was hard to extend.",
     delivered: [
-      "Chose the approach and built the whole product myself",
-      "Automatic collection of filings, full-text search, saved searches and alerts",
-      "Subscriptions, a personal library and API access, replacing the old site",
+      "Chose the technology, designed the system and built all of it myself: data pipeline, backend, front end and deployment",
+      "Automatic collection from 20+ SEC filing types, historical archives included, running unattended and backing off politely when the SEC throttles",
+      "Clause-level search filtered by company, industry, company size, law firm and document type, with highlighted matches",
+      "Saved searches that email new matches immediately, daily or weekly",
+      "The paid product: free, monthly and yearly plans, a personal library with Excel downloads, and API access for customers",
+      "Moved the content off the old site and rebuilt the product without losing it",
     ],
-    outcome: "Indexed between 100,000 and 1 million contract exhibits (reported).",
+    outcome:
+      "One engineer delivered the whole product, 8 major features and 90 capabilities, and indexed between 100,000 and 1 million contract exhibits (reported).",
+    tech: ["Laravel", "Elasticsearch", "Stripe", "Redis"],
   },
   {
     id: "retail-pos",
@@ -41,29 +49,36 @@ const caseStudies = [
     period: "Aug 2021 – Apr 2023",
     role: "Lead engineer, team of 2–3",
     problem:
-      "Regulated retailers had to run sales, delivery and stock while reporting to the state's track-and-trace system.",
+      "Licensed retailers sell in-store, by delivery and online, and every regulated sale must be reported to the state exactly once, only within legal selling hours. Getting it wrong puts their licence at risk.",
     delivered: [
-      "Point of sale, delivery drivers, online orders, purchasing and inventory",
-      "State compliance reporting built into daily operations",
-      "The public product website and onboarding for new retailers, from the first commit",
+      "State compliance reporting built into every sale: blocked outside legal hours, never reported twice, and failures kept for retry",
+      "One order system for the till, delivery drivers, pickup and the online store, with discounts, taxes, delivery fees and purchase limits",
+      "Purchasing from brands, stock received against each order, and a shared product catalogue with stock per store",
+      "Sales, tax and product reports by day, month, hour and area for owners",
+      "Started the wholesale product from the retail platform, and built the public website and self-service onboarding from the first commit",
     ],
     outcome:
-      "A wholesale product was spun off. The platform kept pace as the company expanded into more US states. I was the top backend contributor and also helped with hiring.",
+      "Top backend contributor, with 58% of the admin and API code and 50% of the point-of-sale app. Led a team of 2–3, helped with hiring, and kept the platform in step as the company expanded into more US states.",
+    tech: ["Laravel", "Node.js", "AWS"],
   },
   {
     id: "tour-catalogue",
-    title: "One catalogue for seven tour operators",
+    title: "One catalogue for seven tour operators, and a cruise retailer off its legacy site",
     region: "United States",
     period: "Oct 2023 – Sep 2025",
     role: "Proposed and designed the architecture",
     problem:
-      "Seven tour operators each publish tours and prices in their own format, on their own schedule. Customers need one consistent page.",
+      "A cruise and tour retailer sells trips from seven tour operators, each publishing tours and prices in its own format, on its own schedule. Customers need one consistent page, and the whole business ran on an ageing site that every change risked breaking.",
     delivered: [
-      "Automated daily updates that back up data before loading and never leave the site half-updated",
-      "Retired the old admin screens and started a new public website",
-      "Quote requests built from the same data as the page, so emails always match",
+      "One tour page and one search for all seven operators, so adding an operator means adding one small piece, not a rebuild",
+      "Automated daily updates that back up data first, never leave the site half-updated, and alert the team the moment a job fails",
+      "Pricing rules that let sales run discounts and private offers by tour, city, price band and trip length",
+      "Quote requests built from the same data as the page, so the email sales receives always matches what the customer saw",
+      "Moved the admin team off the old site screen by screen, then led the new public website: 152 pages",
+      "Blocking for bots and brute-force logins across the site",
     ],
-    outcome: "Tour and search pages became several times faster (reported). I was the #1 contributor to the API.",
+    outcome:
+      "Tour and search pages became several times faster (reported). I was the #1 contributor to the API and wrote nearly half of the new website's code (749 of 1,579 changes).",
     tech: ["Laravel", "Next.js", "Redis"],
   },
   {
@@ -73,13 +88,17 @@ const caseStudies = [
     period: "Jun 2020 – Jul 2021",
     role: "Main contributor",
     problem:
-      "Customers send money, pay merchants by QR code and withdraw to banks. A transfer must never be applied twice.",
+      "Customers send money, pay merchants by QR code across several currencies and withdraw to banks. Every transfer has to apply fees and rewards correctly and must never be applied twice.",
     delivered: [
-      "Money movement, top-ups, withdrawals and identity checks",
-      "Admin back office and reports for the finance team",
-      "Most of the marketplace seller portal, where sellers are paid through the wallet",
+      "The core money movement: transfers, QR payments, fees, rewards and currency conversion, each checked before any money moves and fully undone if a step fails",
+      "Card and bank top-ups that verify every payment confirmation and never credit the same payment twice",
+      "Withdrawals to banks, with batch processing and exports for the finance team",
+      "Sign-up, identity checks and permissions for customers, merchants, agents and admins",
+      "Closed the security gaps: staff reaching beyond their permissions, customers seeing others' withdrawals, and unsafe pages",
+      "Most of the marketplace seller portal, where sellers in several countries list, ship and get paid through the wallet",
     ],
-    outcome: "Fixed a race condition found by a penetration test and hardened the wallet's security.",
+    outcome:
+      "Fixed a double-spend risk found by a penetration test. Main contributor to the wallet (about 42% of changes) and builder of 81% of the seller portal.",
     tech: ["CakePHP", "MySQL", "Redis", "AWS"],
   },
   {
@@ -89,13 +108,17 @@ const caseStudies = [
     period: "Mar 2015 – Apr 2020",
     role: "Senior backend developer",
     problem:
-      "Travellers compare and book across many rental companies. Airline and airport partners want their own branded sites.",
+      "Travellers compare and book across many rental companies, each with its own system and rules. Airline and airport partners want their own branded sites, and a booking can fail halfway at the supplier, the payment or the email.",
     delivered: [
-      "10+ rental suppliers behind one booking system",
-      "Bookings, changes, cancellations, deposits and refunds",
-      "White-label partner sites and the admin back office. Replaced the old booking engine",
+      "10+ rental suppliers behind one search and booking flow that behaves the same for every one of them",
+      "Bookings that survive failures step by step, protect customers from price rises and refund automatically if the price went up",
+      "Payments, deposits, refunds, and a paid membership and insurance sold alongside the rental",
+      "Search by place that finds the nearest pickup and return locations, with tools for staff to keep supplier locations current",
+      "Admin tools for customer service, commission rules and promotions, and branded emails with alerts to staff when something looks wrong",
+      "Helped replace the old booking engine, and moved its historical bookings across",
     ],
-    outcome: "4M+ rentals in 5 countries, with sub-second responses (reported). One of the two largest contributors.",
+    outcome:
+      "4M+ rentals in 5 countries, with sub-second responses (reported). One of the two largest contributors to the booking system and admin over five years.",
     tech: ["Laravel", "AngularJS"],
   },
 ];
