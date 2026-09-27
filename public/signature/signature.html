@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Email Signature</title>
+<style>
+ body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:#f3f4f6;color:#111827;margin:0;padding:24px 16px}
+ .wrap{max-width:640px;margin:0 auto}
+ .card{background:#fff;border:1px solid #e5e7eb;border-radius:10px;padding:20px;margin-bottom:16px}
+ label{display:block;font-size:13px;color:#4b5563;margin:10px 0 4px}
+ input{width:100%;box-sizing:border-box;padding:8px 10px;border:1px solid #d1d5db;border-radius:6px;font-size:14px}
+ button{margin-top:14px;padding:10px 16px;border:0;border-radius:6px;background:#111827;color:#fff;font-size:14px;cursor:pointer}
+ .hint{font-size:12.5px;color:#6b7280;line-height:1.5}
+ #ok{font-size:13px;color:#047857;margin-left:10px}
+</style></head><body><div class="wrap">
+
+<div class="card">
+ <h2 style="margin:0 0 4px;font-size:18px">Email signature</h2>
+ <p class="hint" style="margin:0">Gmail only shows images hosted at a public URL. Upload the 5 PNGs, enter that folder's URL below, then copy the signature and paste it into Gmail → Settings → General → Signature.</p>
+ <label>Public folder URL of the PNG icons (ending with /)</label>
+ <input id="base" value="https://asmshaon.tech/signature/">
+ <label>WhatsApp number (e.g. +880 1712-345678)</label>
+ <input id="wa" value="+880 1XXX-XXXXXX">
+ <button id="copy">Copy signature</button><span id="ok"></span>
+</div>
+
+<div class="card"><div id="sig"></div></div>
+
+<p class="hint">The preview uses the PNGs saved next to this file. The copied version uses your public URL instead.</p>
+</div>
+<script>
+const ICON=(name,src)=>`<img src="${src}${name}.png" width="16" height="16" alt="" style="display:inline-block;width:16px;height:16px;border:0;vertical-align:middle;margin-right:6px">`;
+const A='color:#374151;text-decoration:none;font-size:13px;vertical-align:middle';
+const SEP='<span style="color:#d1d5db;padding:0 10px">|</span>';
+function build(src,raw){
+ const wa=raw.replace(/\D/g,'');
+ const pretty=/^880\d{10}$/.test(wa)?wa.replace(/^880(\d{4})(\d+)$/,'+880 $1-$2'):raw;
+ return `<table cellpadding="0" cellspacing="0" border="0" style="font-family:Arial,Helvetica,sans-serif;color:#111827;border-collapse:collapse">
+<tr><td style="padding:0 0 2px;font-size:15px;font-weight:bold;color:#111827">Abu Saleh Muhammad Shaon</td></tr>
+<tr><td style="padding:0 0 10px;font-size:13px;color:#4B5563">Senior Software Architect · Full-Stack &amp; AI Engineer</td></tr>
+<tr><td style="border-top:1px solid #E5E7EB;padding:10px 0 4px;line-height:22px">
+<a href="mailto:srabon.php@gmail.com" style="${A}">${ICON('email',src)}srabon.php@gmail.com</a>${SEP}<a href="https://wa.me/${wa}" style="${A}">${ICON('whatsapp',src)}${pretty}</a></td></tr>
+<tr><td style="padding:0;line-height:22px">
+<a href="https://github.com/asmshaon" style="${A}">${ICON('github',src)}GitHub</a>${SEP}<a href="https://www.linkedin.com/in/asmshaon" style="${A}">${ICON('linkedin',src)}LinkedIn</a>${SEP}<a href="https://asmshaon.tech" style="${A}">${ICON('web',src)}asmshaon.tech</a></td></tr>
+</table>`;}
+const $=id=>document.getElementById(id);
+const render=()=>{$('sig').innerHTML=build('',$('wa').value)};
+$('wa').oninput=render; render();
+$('copy').onclick=async()=>{
+ let b=$('base').value.trim(); if(b&&!b.endsWith('/'))b+='/';
+ const html=build(b,$('wa').value);
+ try{await navigator.clipboard.write([new ClipboardItem({'text/html':new Blob([html],{type:'text/html'}),'text/plain':new Blob([html],{type:'text/plain'})})]);$('ok').textContent='Copied — paste into Gmail.';}
+ catch(e){const d=document.createElement('div');d.innerHTML=html;document.body.appendChild(d);const r=document.createRange();r.selectNode(d);getSelection().removeAllRanges();getSelection().addRange(r);document.execCommand('copy');d.remove();$('ok').textContent='Copied.';}
+};
+</script></body></html>
