@@ -14,7 +14,7 @@
 
 <div class="card">
  <h2 style="margin:0 0 4px;font-size:18px">Email signature</h2>
- <p class="hint" style="margin:0">Gmail only shows images hosted at a public URL. Upload the 6 PNGs, enter that folder's URL below, then copy the signature and paste it into Gmail → Settings → General → Signature.</p>
+ <p class="hint" style="margin:0">Gmail only shows images hosted at a public URL. Upload the PNGs (email, whatsapp, linkedin, web, external), enter that folder's URL below, then copy the signature and paste it into Gmail → Settings → General → Signature.</p>
  <label>Public folder URL of the PNG icons (ending with /)</label>
  <input id="base" value="https://asmshaon.tech/signature/">
  <label>WhatsApp number (e.g. +880 1712-345678)</label>
@@ -33,14 +33,15 @@ const SEP='<span style="color:#d1d5db;padding:0 10px">|</span>';
 function build(src,raw){
  const wa=raw.replace(/\D/g,'');
  const pretty=/^880\d{10}$/.test(wa)?wa.replace(/^880(\d{4})(\d+)$/,'+880 $1-$2'):raw;
- const NW='white-space:nowrap';
- const SOC=(href,name,alt)=>`<a href="${href}" style="text-decoration:none;display:inline-block;margin-right:12px;vertical-align:middle"><img src="${src}${name}.png" width="18" height="18" alt="${alt}" title="${alt}" style="display:block;width:18px;height:18px;border:0"></a>`;
+ const ROW='padding:0;height:24px;line-height:24px;font-size:13px;color:#374151;white-space:nowrap;vertical-align:middle';
+ const T='color:#374151;text-decoration:none;font-size:13px;vertical-align:middle';
  return `<table cellpadding="0" cellspacing="0" border="0" style="font-family:Arial,Helvetica,sans-serif;color:#111827;border-collapse:collapse">
 <tr><td style="padding:0 0 2px;font-size:15px;font-weight:bold;color:#111827">Abu Saleh Muhammad Shaon</td></tr>
-<tr><td style="padding:0 0 10px;font-size:13px;color:#4B5563;line-height:18px"><span style="${NW}">Senior Full-Stack &amp; AI Engineer</span></td></tr>
-<tr><td style="border-top:1px solid #E5E7EB;padding:10px 0 0;line-height:22px;${NW}"><a href="mailto:srabon.php@gmail.com" style="${A}">${ICON('email',src)}srabon.php@gmail.com</a></td></tr>
-<tr><td style="padding:0;line-height:22px;${NW}"><a href="https://wa.me/${wa}" style="${A}">${ICON('whatsapp',src)}${pretty}</a></td></tr>
-<tr><td style="padding:8px 0 0;line-height:22px;${NW}">${SOC('https://github.com/asmshaon','github','GitHub')}${SOC('https://www.linkedin.com/in/asmshaon','linkedin','LinkedIn')}<a href="https://asmshaon.tech" target="_blank" style="${A}">${ICON('web',src)}View my work<img src="${src}external.png" width="12" height="12" alt=" ↗" style="display:inline-block;width:12px;height:12px;border:0;vertical-align:middle;margin-left:5px"></a></td></tr>
+<tr><td style="padding:0 0 10px;font-size:13px;color:#4B5563;line-height:18px;white-space:nowrap">Senior Full-Stack &amp; AI Engineer</td></tr>
+<tr><td style="border-top:1px solid #E5E7EB;padding:0;height:10px;line-height:10px;font-size:1px">&nbsp;</td></tr>
+<tr><td style="${ROW}">${ICON('email',src)}<span style="${T}">srabon.php@gmail.com</span></td></tr>
+<tr><td style="${ROW}"><a href="https://wa.me/${wa}" target="_blank" style="${T}">${ICON('whatsapp',src)}${pretty}</a></td></tr>
+<tr><td style="${ROW}"><a href="https://www.linkedin.com/in/asmshaon" target="_blank" style="${T}">${ICON('linkedin',src)}LinkedIn</a><span style="color:#D1D5DB;padding:0 10px;vertical-align:middle">|</span><a href="https://asmshaon.tech" target="_blank" style="${T}">${ICON('web',src)}View my work<img src="${src}external.png" width="12" height="12" alt=" ↗" style="display:inline-block;width:12px;height:12px;border:0;vertical-align:middle;margin-left:5px"></a></td></tr>
 </table>`;}
 const $=id=>document.getElementById(id);
 const render=()=>{$('sig').innerHTML=build('',$('wa').value)};
