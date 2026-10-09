@@ -90,3 +90,63 @@ export const KNOWS_ABOUT = [
   "Linux",
   "Git",
 ];
+
+// Search phrases clients use when hiring, matched to work in the career inventory. Used in the
+// keywords meta tag and the JSON-LD Occupation and ProfessionalService nodes. Not shown on the page.
+export const KEYWORDS = [
+  // Name and brand
+  FULL_NAME,
+  SHORT_NAME,
+  "asmshaon",
+  // Role
+  "senior software engineer",
+  "senior full-stack developer",
+  "senior backend developer",
+  "lead software engineer",
+  "remote software engineer",
+  "freelance software engineer",
+  "technical partner for startups",
+  "software architect",
+  // Hire intent
+  "hire Laravel developer",
+  "hire PHP developer",
+  "hire Go backend developer",
+  "hire Next.js developer",
+  "hire remote backend engineer",
+  // Specialities
+  "Laravel expert",
+  "PHP Laravel backend engineering",
+  "Go microservices developer",
+  "high-traffic system optimization",
+  "performance optimization and caching",
+  "scalable API development",
+  "legacy PHP modernization",
+  "CodeIgniter to Laravel migration",
+  "application security and audit fixes",
+  "secure code review",
+  // Domains
+  "payment system developer",
+  "payment gateway integration",
+  "Stripe Connect integration developer",
+  "fintech software engineer",
+  "e-wallet development",
+  "booking engine developer",
+  "car rental booking system developer",
+  "tour and cruise booking platform developer",
+  "food ordering platform developer",
+  "POS software developer",
+  "METRC integration developer",
+  "marketplace development",
+  "SaaS development",
+  "AI integration and RAG development",
+];
+
+// Services offered to clients anywhere, for the JSON-LD ProfessionalService node.
+export const SERVICES = [
+  "Bookings and payments systems",
+  "Multi-supplier booking and catalogue integration",
+  "Legacy system modernization",
+  "Performance optimization for high-traffic systems",
+  "Security review and compliance",
+  "Technical leadership for small teams",
+];
