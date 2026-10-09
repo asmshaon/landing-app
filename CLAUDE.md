@@ -20,17 +20,17 @@ Next.js 16 (App Router) + React 19, Tailwind CSS v4 (CSS-first config, no `tailw
 
 A single-page personal portfolio/landing site for a senior full-stack engineer. It is written for recruiters and non-technical readers: business outcomes, not a skills list.
 
-- `app/page.tsx` composes the page by stacking section components from `app/sections/` in order. Navigation is in-page anchors: the `navLinks` array in `app/components/Navbar.tsx` lists section ids, which must match the `id` on each section's root `<section>`; Navbar also tracks the active section on scroll and updates the URL hash.
+- `app/page.tsx` composes the page by stacking section components from `app/sections/` in order. The fixed top Navbar has no section links or mobile menu, only the logo, theme toggle and a LinkedIn icon (shown from `xl` up).
 - `app/components/` holds page chrome (Navbar, ScrollProgress). Note: Navbar defines its own inline `ThemeToggle`; `app/components/ThemeToggle.tsx` is currently not imported anywhere.
-- Section order: Hero, ClientLogos (countries strip), Services ("What I Do" outcome areas, id `services`), CaseStudies (id `work`), Experience (timeline, id `experience`), WhyHireMe, Testimonials, FooterCTA (id `contact`), Footer.
-- Site content (outcome areas, case studies, timeline, testimonials, etc.) is hardcoded as arrays at the top of each section file — edit copy there.
-  - Case studies and the timeline come from the shareable career inventory. Clients stay anonymous, so no client names, links or screenshots, and every figure must appear in that inventory.
+- Section order: Hero, ClientLogos (countries strip), Services ("What I Do" outcome areas, id `services`), CaseStudies (id `work`), WhyHireMe, Testimonials, FooterCTA (id `contact`), Footer.
+- Site content (outcome areas, case studies, testimonials, etc.) is hardcoded as arrays at the top of each section file — edit copy there.
+  - Case studies come from the shareable career inventory. Clients stay anonymous, so no client names, links or screenshots, and every figure must appear in that inventory.
   - Technology names only appear as the small `SlashList` footnote on a case study.
-  - Contact is only through the form. Don't add an email address, phone or WhatsApp number, or a map.
+  - Contact is only by booking a Cal.com call. Don't add a contact form, an email address, phone or WhatsApp number, or a map.
   - The call to action reads "Let's talk", never "Contact".
 - Images live in `public/images/`; `next.config.ts` sets `images.unoptimized: true`.
 - Sections are Server Components by default; only interactive ones (Footer, Navbar, ScrollProgress) are `"use client"`.
-- `app/sections/Footer.tsx` exports both `FooterCTA` (contact form) and `Footer`. The form POSTs JSON `{name, email, subject, message}` to `app/api/send-email/route.ts`, which validates and forwards to the Resend HTTP API (no SDK) using `RESEND_API_KEY` from `.env` (gitignored; the form returns a 500 without it). Recipient address is hardcoded in the route.
+- `app/sections/Footer.tsx` exports both `FooterCTA` (the `#contact` section) and `Footer`. `FooterCTA` embeds a Cal.com booking calendar inline via `@calcom/embed-react`. The event is set by the `CAL_LINK` constant (`<username>/<event-slug>`) at the top of the file. The calendar follows the site theme through next-themes' `resolvedTheme`, with its brand colour set to the monochrome ink. There are no API routes and no env vars.
 
 ## Theming
 
@@ -40,9 +40,9 @@ A single-page personal portfolio/landing site for a senior full-stack engineer. 
   - `dark-*`, `slate-*` and `gray-*` all resolve to the same neutral ash scale. The names are kept for existing utilities.
   - `accent` is theme-aware ink (`--ink`): near-black in light and near-white in dark. `ink-inverse` is its opposite.
   - `font-display` is the Newsreader serif used for headings.
-  - Shared plain-CSS classes (`btn-primary`, `eyebrow`, nav link and scroll progress styles) are defined further down the same file.
+  - Shared plain-CSS classes (`btn-primary`, `eyebrow`, scroll progress styles) are defined further down the same file.
 - Style both light and dark variants when adding UI (pattern: `bg-slate-50 dark:bg-dark-800`). Every section follows the theme except `Footer`, which stays black in both themes.
 
 ## Deployment
 
-Pushing to `main` triggers `.github/workflows/deploy.yml`: SSH into the server, `git pull` in `/var/www/landing`, `npm ci --include=dev`, `npm run build`, then reload/start the PM2 process `landing-app` on port 3000. It is a Node server deployment: static export (`output: "export"`) was deliberately removed because the API route needs a server, and the local `out/` directory is a stale leftover from that. Anything merged to `main` goes live.
+Pushing to `main` triggers `.github/workflows/deploy.yml`: SSH into the server, `git pull` in `/var/www/landing`, `npm ci --include=dev`, `npm run build`, then reload/start the PM2 process `landing-app` on port 3000. It is a Node server deployment (`npm start` under PM2), not a static export. The local `out/` directory is a stale leftover from an old static export. Anything merged to `main` goes live.

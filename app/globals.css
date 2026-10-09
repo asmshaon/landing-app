@@ -131,36 +131,6 @@ h3 {
   transition: width 0.1s ease-out;
 }
 
-/* Navbar active link underline */
-.landing-nav-link {
-  position: relative;
-  color: #525252;
-  font-size: 0.875rem;
-  font-weight: 500;
-  transition: color 0.2s ease;
-  padding: 0.5rem 0;
-  text-decoration: none;
-}
-
-.dark .landing-nav-link {
-  color: #a3a3a3;
-}
-
-.landing-nav-link:hover,
-.landing-nav-link.active {
-  color: var(--ink);
-}
-
-.landing-nav-link.active::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: var(--ink);
-}
-
 /* Scrollbar */
 ::-webkit-scrollbar { width: 8px; }
 ::-webkit-scrollbar-track { background: var(--scroll-track); }
