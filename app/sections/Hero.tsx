@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { ArrowRight } from "lucide-react";
 
 const industries = [
   "Fintech & payments",
@@ -12,7 +11,7 @@ const industries = [
 const stats = [
   { value: "16+", label: "years in production" },
   { value: "4M+", label: "rentals handled" },
-  { value: "4–5", label: "engineers led today" },
+  { value: "40+", label: "security audit findings fixed" },
 ];
 
 // Hand-drawn double frame around the portrait; strokes follow the theme's ink color.
@@ -64,31 +63,21 @@ export function Hero() {
                 />
               </div>
             </div>
-            <figcaption className="mt-3 text-center text-xs tracking-wide text-slate-600 dark:text-slate-400">
-              Abu Saleh · Dhaka, Bangladesh
+            <figcaption className="mt-4 text-center font-display italic text-[0.9375rem] leading-snug text-slate-600 dark:text-slate-400">
+              The engineer you call when it has to work.
             </figcaption>
           </figure>
 
           <div>
-            <p className="eyebrow mb-4">Senior Full-Stack Software Engineer</p>
-
             <h1 className="font-display font-medium text-accent text-4xl sm:text-5xl lg:text-[4.25rem] leading-[1.04] tracking-tight">
               I turn hard business problems into{" "}
               <em className="text-slate-500 dark:text-slate-400">reliable software.</em>
             </h1>
 
-            <p className="mt-6 mb-8 max-w-xl text-lg text-slate-600 dark:text-slate-400 leading-relaxed">
+            <p className="mt-6 max-w-xl text-lg text-slate-600 dark:text-slate-400 leading-relaxed">
               16+ years designing, building and leading production systems: payments, bookings,
               point of sale, marketplaces and SaaS platforms that businesses run on every day.
             </p>
-
-            <a
-              href="#contact"
-              className="btn-primary inline-flex items-center gap-2 px-6 py-3 rounded-md text-sm font-semibold"
-            >
-              Let&apos;s talk
-              <ArrowRight className="w-4 h-4" />
-            </a>
 
             <div className="mt-9 flex flex-wrap items-baseline gap-x-4 gap-y-2">
               <span className="eyebrow !text-[0.6875rem]">Industries I build for</span>

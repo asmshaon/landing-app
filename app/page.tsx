@@ -4,7 +4,6 @@ import { Hero } from "./sections/Hero";
 import { ClientLogos } from "./sections/ClientLogos";
 import { Services } from "./sections/Services";
 import { CaseStudies } from "./sections/CaseStudies";
-import { Experience } from "./sections/Experience";
 import { WhyHireMe } from "./sections/WhyHireMe";
 import { Testimonials } from "./sections/Testimonials";
 import { FooterCTA, Footer } from "./sections/Footer";
@@ -18,7 +17,6 @@ export default function Home() {
       <ClientLogos />
       <Services />
       <CaseStudies />
-      <Experience />
       <WhyHireMe />
       <Testimonials />
       <FooterCTA />
