@@ -2,15 +2,16 @@ import Image from "next/image";
 
 const industries = [
   "Fintech & payments",
+  "Travel & bookings",
   "Retail & POS",
+  "Food ordering",
   "E-commerce & marketplaces",
   "SaaS",
-  "Logistics & supply chain",
 ];
 
 const stats = [
   { value: "16+", label: "years in production" },
-  { value: "4M+", label: "rentals handled" },
+  { value: "4M+", label: "rentals, sub-second" },
   { value: "40+", label: "security audit findings fixed" },
 ];
 
@@ -70,13 +71,14 @@ export function Hero() {
 
           <div>
             <h1 className="font-display font-medium text-accent text-4xl sm:text-5xl lg:text-[4.25rem] leading-[1.04] tracking-tight">
-              I turn hard business problems into{" "}
-              <em className="text-slate-500 dark:text-slate-400">reliable software.</em>
+              I love making systems fast, secure and{" "}
+              <em className="text-slate-500 dark:text-slate-400">resilient under high traffic.</em>
             </h1>
 
             <p className="mt-6 max-w-xl text-lg text-slate-600 dark:text-slate-400 leading-relaxed">
-              16+ years designing, building and leading production systems: payments, bookings,
-              point of sale, marketplaces and SaaS platforms that businesses run on every day.
+              16+ years designing, building and optimising large production systems: payments,
+              bookings, point of sale, marketplaces and SaaS platforms at scale, built secure and
+              compliance-ready from day one.
             </p>
 
             <div className="mt-9 flex flex-wrap items-baseline gap-x-4 gap-y-2">
