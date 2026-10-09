@@ -5,9 +5,11 @@ import { ThemeProvider } from "./providers";
 import {
   DESCRIPTION,
   FULL_NAME,
+  KEYWORDS,
   KNOWS_ABOUT,
   LINKEDIN_URL,
   ROLE,
+  SERVICES,
   SHORT_NAME,
   SITE_URL,
 } from "./seo";
@@ -35,6 +37,8 @@ export const metadata: Metadata = {
   applicationName: FULL_NAME,
   authors: [{ name: FULL_NAME, url: SITE_URL }],
   creator: FULL_NAME,
+  keywords: KEYWORDS,
+  category: "technology",
   alternates: { canonical: "/" },
   openGraph: {
     type: "profile",
@@ -74,6 +78,27 @@ const jsonLd = {
       address: { "@type": "PostalAddress", addressLocality: "Dhaka", addressCountry: "BD" },
       sameAs: [LINKEDIN_URL],
       knowsAbout: KNOWS_ABOUT,
+      knowsLanguage: ["English", "Bengali"],
+      hasOccupation: {
+        "@type": "Occupation",
+        name: "Senior Software Engineer",
+        description: DESCRIPTION,
+        skills: KNOWS_ABOUT.join(", "),
+      },
+    },
+    {
+      "@type": "ProfessionalService",
+      "@id": `${SITE_URL}/#service`,
+      name: `${FULL_NAME} · ${ROLE}`,
+      url: SITE_URL,
+      image: `${SITE_URL}/images/og-portrait.png`,
+      description: DESCRIPTION,
+      founder: { "@id": `${SITE_URL}/#person` },
+      areaServed: "Worldwide",
+      address: { "@type": "PostalAddress", addressLocality: "Dhaka", addressCountry: "BD" },
+      serviceType: SERVICES,
+      knowsAbout: KNOWS_ABOUT,
+      keywords: KEYWORDS.join(", "),
     },
     {
       "@type": "WebSite",
