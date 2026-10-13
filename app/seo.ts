@@ -3,9 +3,9 @@ export const SITE_URL = "https://asmshaon.tech";
 export const FULL_NAME = "Abu Saleh Muhammad Shaon";
 export const SHORT_NAME = "Abu Saleh";
 export const ROLE = "Software Engineer & Technical Partner";
-export const HEADLINE = "I love making systems fast, secure and resilient under high traffic.";
+export const HEADLINE = "I build software around what your business needs, not the other way round.";
 export const DESCRIPTION =
-  "I love making systems fast, secure and resilient under high traffic. 16+ years delivering compliance-ready payments, bookings, POS and SaaS platforms at scale. Book a call.";
+  "I build secure, resilient software around what your business needs. 16+ years of compliance-ready payments, bookings, POS and SaaS for startups and enterprises. Book a call.";
 export const LINKEDIN_URL = "https://www.linkedin.com/in/asmshaon";
 
 // Skills from the career inventory and the LinkedIn skills section, for search engines and AI
@@ -117,10 +117,10 @@ export const KEYWORDS = [
   "Laravel expert",
   "PHP Laravel backend engineering",
   "Go microservices developer",
-  "high-traffic system optimization",
-  "performance optimization and caching",
+  "high-traffic system optimisation",
+  "performance optimisation and caching",
   "scalable API development",
-  "legacy PHP modernization",
+  "legacy PHP modernisation",
   "CodeIgniter to Laravel migration",
   "application security and audit fixes",
   "secure code review",
@@ -145,8 +145,8 @@ export const KEYWORDS = [
 export const SERVICES = [
   "Bookings and payments systems",
   "Multi-supplier booking and catalogue integration",
-  "Legacy system modernization",
-  "Performance optimization for high-traffic systems",
+  "Legacy system modernisation",
+  "Performance optimisation for high-traffic systems",
   "Security review and compliance",
   "Technical leadership for small teams",
 ];

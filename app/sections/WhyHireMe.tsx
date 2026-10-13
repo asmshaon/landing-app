@@ -1,49 +1,68 @@
+import { PinnedSequence } from "../components/motion/PinnedSequence";
+
+// Each trait is backed by a client testimonial ("Always positive", "met (or beat) deadlines",
+// "proactive approach") or the career inventory: the urgency
+// example is the food-ordering security review (critical findings fixed within three days).
 const values = [
   {
-    title: "Business first",
-    description: "I start from the business problem and measure the work by what it changes.",
+    title: "Outcome-focused",
+    description: "I start from the business problem and measure my work by what it changes, not by tickets closed or lines of code.",
+  },
+  {
+    title: "Positive by default",
+    description: "I talk in solutions, not blame, and I celebrate the small wins along the way. Good energy keeps a team moving.",
   },
   {
     title: "Thinks ahead",
-    description: "Systems that keep working as the business grows, without needing a rewrite.",
+    description: "I build for where the business is heading, so the system keeps up as it grows instead of needing a rewrite.",
+  },
+  {
+    title: "Transparent",
+    description: "Plain updates, honest estimates and deadlines kept. If something is at risk, you hear it early, with a way forward.",
+  },
+  {
+    title: "Proactive",
+    description: "I raise risks before they turn into problems and suggest improvements before I'm asked.",
+  },
+  {
+    title: "A sense of urgency",
+    description: "When something is broken, it gets fixed now. On my current project, critical security findings were closed within three days.",
   },
   {
     title: "Stays after launch",
-    description: "Planning, building, releasing and improving. I stay with a system after it ships.",
+    description: "Shipping is only the halfway point. I stay to release, watch and improve what I've built.",
   },
   {
     title: "Remote-ready ownership",
-    description: "Async across time zones. I pick up work, unblock myself and keep progress visible.",
-  },
-  {
-    title: "Clear and dependable",
-    description: "Plain updates, deadlines kept, and long-term working relationships.",
+    description: "At home across time zones. I pick up work, unblock myself and keep progress visible without being chased.",
   },
 ];
 
+// The heading, then each value, fill the screen one at a time as the visitor scrolls.
 export function WhyHireMe() {
   return (
-    <section
-      id="why-me"
-      className="bg-white dark:bg-dark-900 border-t border-slate-200 dark:border-dark-600 py-20 lg:py-24"
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-2xl mb-12 lg:mb-14">
-          <p className="eyebrow mb-3">Why Teams Work With Me</p>
-          <h2 className="font-display font-medium text-accent text-4xl lg:text-5xl leading-tight">
-            Reliable in the parts that matter
-          </h2>
-        </div>
-
-        <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-px bg-slate-200 dark:bg-dark-600 border border-slate-200 dark:border-dark-600">
-          {values.map((value) => (
-            <div key={value.title} className="bg-white dark:bg-dark-900 p-6 lg:p-7">
-              <h3 className="font-display text-accent text-[1.3125rem] leading-snug mb-2">{value.title}</h3>
-              <p className="text-[0.9375rem] text-slate-600 dark:text-slate-400">{value.description}</p>
+    <section id="why-me" className="bg-slate-50 dark:bg-dark-800">
+      <PinnedSequence
+        items={[
+          <div key="intro" className="max-w-4xl">
+            <p className="eyebrow mb-4">My DNA</p>
+            <h2 className="scene-heading">The habits behind the work</h2>
+          </div>,
+          ...values.map((value, i) => (
+            <div key={value.title} className="max-w-5xl">
+              <p className="eyebrow mb-6 tabular-nums">
+                {String(i + 1).padStart(2, "0")} / {String(values.length).padStart(2, "0")}
+              </p>
+              <h3 className="font-display font-medium text-accent text-5xl sm:text-7xl lg:text-[7rem] leading-[0.98] tracking-[-0.03em]">
+                {value.title}
+              </h3>
+              <p className="mt-8 max-w-3xl font-display text-2xl sm:text-3xl lg:text-[2.5rem] leading-snug text-slate-600 dark:text-slate-400">
+                {value.description}
+              </p>
             </div>
-          ))}
-        </div>
-      </div>
+          )),
+        ]}
+      />
     </section>
   );
 }

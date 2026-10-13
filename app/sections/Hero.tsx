@@ -1,19 +1,5 @@
 import Image from "next/image";
-
-const industries = [
-  "Fintech & payments",
-  "Travel & bookings",
-  "Retail & POS",
-  "Food ordering",
-  "E-commerce & marketplaces",
-  "SaaS",
-];
-
-const stats = [
-  { value: "16+", label: "years in production" },
-  { value: "4M+", label: "rentals, sub-second" },
-  { value: "40+", label: "security audit findings fixed" },
-];
+import { HeroFade } from "../components/motion/ScrollEffects";
 
 // Hand-drawn double frame around the portrait; strokes follow the theme's ink color.
 function SketchFrame() {
@@ -45,11 +31,11 @@ function SketchFrame() {
 
 export function Hero() {
   return (
-    <section id="home" className="bg-white dark:bg-dark-900 pt-28 pb-20 lg:pt-36 lg:pb-28">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-[1.3fr_0.7fr] gap-12 lg:gap-16 items-center">
+    <section id="home" className="bg-white dark:bg-dark-900 min-h-svh flex items-center pt-24 pb-16 lg:pt-28">
+      <HeroFade className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid lg:grid-cols-[1.55fr_0.6fr] gap-10 lg:gap-14 items-center">
           {/* Portrait: first on mobile, right column on large screens */}
-          <figure className="order-first lg:order-last w-full max-w-[18rem] sm:max-w-xs lg:max-w-sm mx-auto lg:mr-0">
+          <figure className="order-first lg:order-last w-full max-w-[14rem] sm:max-w-[16rem] lg:max-w-xs mx-auto lg:mr-0">
             <div className="relative aspect-[4/5]">
               <div aria-hidden="true" className="portrait-backdrop absolute inset-[3%] rounded-[1.4rem]" />
               <SketchFrame />
@@ -58,7 +44,7 @@ export function Hero() {
                   src="/images/asmshaon_profile_cutout.webp"
                   alt="Portrait of Abu Saleh"
                   fill
-                  sizes="(min-width: 1024px) 24rem, 20rem"
+                  sizes="(min-width: 1024px) 20rem, 16rem"
                   className="object-contain object-bottom grayscale contrast-105"
                   priority
                 />
@@ -70,48 +56,22 @@ export function Hero() {
           </figure>
 
           <div>
-            <h1 className="font-display font-medium text-accent text-4xl sm:text-5xl lg:text-[4.25rem] leading-[1.04] tracking-tight">
-              I love making systems fast, secure and{" "}
-              <em className="text-slate-500 dark:text-slate-400">resilient under high traffic.</em>
+            <h1 className="font-display font-medium text-accent text-5xl sm:text-6xl lg:text-[5.25rem] xl:text-[6rem] leading-[1] tracking-[-0.025em]">
+              I build software around what your business needs,{" "}
+              <em className="text-slate-500 dark:text-slate-400">not the other way round.</em>
             </h1>
 
-            <p className="mt-6 max-w-xl text-lg text-slate-600 dark:text-slate-400 leading-relaxed">
-              16+ years designing, building and optimising large production systems: payments,
-              bookings, point of sale, marketplaces and SaaS platforms at scale, built secure and
-              compliance-ready from day one.
+            <p className="mt-8 max-w-2xl text-lg lg:text-xl text-slate-600 dark:text-slate-400 leading-relaxed">
+              For over 16 years, I&apos;ve built secure, resilient software that solves business
+              problems for startups and enterprises: payments, bookings, point of sale, marketplaces
+              and SaaS, built compliance-ready from day one. Software should adapt to your business,
+              so I start with your goals, then build software that pays its way. I already use
+              AI in my day-to-day engineering for clients, and I&apos;m now building AI features into
+              business software on my own projects.
             </p>
-
-            <div className="mt-9 flex flex-wrap items-baseline gap-x-4 gap-y-2">
-              <span className="eyebrow !text-[0.6875rem]">Industries I build for</span>
-              <ul className="flex flex-wrap gap-2">
-                {industries.map((industry) => (
-                  <li
-                    key={industry}
-                    className="text-sm text-accent border border-slate-300 dark:border-dark-500 rounded-full px-3 py-1"
-                  >
-                    {industry}
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <dl className="mt-10 pt-5 border-t border-slate-200 dark:border-dark-600 flex">
-              {stats.map((stat) => (
-                <div
-                  key={stat.label}
-                  className="pr-4 mr-4 sm:pr-9 sm:mr-9 border-r last:border-r-0 last:mr-0 last:pr-0 border-slate-200 dark:border-dark-600"
-                >
-                  <dt className="sr-only">{stat.label}</dt>
-                  <dd className="font-display text-accent text-3xl sm:text-4xl leading-none tabular-nums">
-                    {stat.value}
-                  </dd>
-                  <dd className="mt-1 text-xs sm:text-sm text-slate-600 dark:text-slate-400">{stat.label}</dd>
-                </div>
-              ))}
-            </dl>
           </div>
         </div>
-      </div>
+      </HeroFade>
     </section>
   );
 }

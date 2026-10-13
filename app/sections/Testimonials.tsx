@@ -1,7 +1,9 @@
-import { Star } from "lucide-react";
+import Link from "next/link";
+import { ArrowRight, Star } from "lucide-react";
+import { Scene } from "../components/Scene";
+import { Reveal } from "../components/motion/Reveal";
 
-
-const testimonials = [
+export const testimonials = [
   {
     text: "Abu was a pleasure to work with. He is professional, reliable, and a very hard worker. Always positive, he works well both independently and as part of a team. He consistently made himself available when needed and brought creative, out-of-the-box thinking to every project. Abu stays up to date with best practices and modern frameworks, ensuring high-quality results. I highly recommend him for full-stack development work.",
   },
@@ -13,35 +15,55 @@ const testimonials = [
   },
 ];
 
+// The quote shown on the home page; the rest live on /testimonials.
+const FEATURED = 2;
+
+const featuredSizes = "text-2xl sm:text-3xl lg:text-[2.5rem]";
+const longSizes = "text-xl sm:text-2xl lg:text-[1.875rem]";
+
+export function Stars() {
+  return (
+    <span className="flex gap-1" aria-label="5 out of 5">
+      {[...Array(5)].map((_, i) => (
+        <Star key={i} className="w-4 h-4 text-accent fill-current" />
+      ))}
+    </span>
+  );
+}
+
+// A single quote in large serif type. Very long quotes step down a size so they fit one screen.
+export function Quote({ text }: { text: string }) {
+  return (
+    <blockquote
+      className={`font-display text-accent leading-[1.35] tracking-[-0.01em] ${
+        text.length > 500 ? longSizes : featuredSizes
+      }`}
+    >
+      &ldquo;{text}&rdquo;
+    </blockquote>
+  );
+}
+
+// One featured quote, with a link to the full set so interest shows up as visits to /testimonials.
 export function Testimonials() {
   return (
-    <section
-      id="testimonials"
-      className="bg-slate-50 dark:bg-dark-800 border-t border-slate-200 dark:border-dark-600 py-20 lg:py-24"
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-2xl mb-12 lg:mb-14">
-          <p className="eyebrow mb-3">Testimonials</p>
-          <h2 className="font-display font-medium text-accent text-4xl lg:text-5xl leading-tight">
-            What it&apos;s like to work with me
-          </h2>
-        </div>
-
-        <div className="grid md:grid-cols-3 gap-10">
-          {testimonials.map((t, idx) => (
-            <figure key={idx} className="flex flex-col gap-5 border-t border-accent pt-6">
-              <div className="flex gap-1" aria-label="5 out of 5">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-3.5 h-3.5 text-accent fill-current" />
-                ))}
-              </div>
-              <blockquote className="font-display text-accent text-lg leading-relaxed">
-                &ldquo;{t.text}&rdquo;
-              </blockquote>
-            </figure>
-          ))}
-        </div>
-      </div>
-    </section>
+    <Scene id="testimonials">
+      <Reveal>
+        <figure className="max-w-5xl">
+          <figcaption className="flex flex-wrap items-center gap-x-5 gap-y-2 mb-8 lg:mb-10">
+            <span className="eyebrow">Why clients come back</span>
+            <Stars />
+          </figcaption>
+          <Quote text={testimonials[FEATURED].text} />
+        </figure>
+        <Link
+          href="/testimonials"
+          className="group mt-10 inline-flex items-center gap-2 font-semibold text-accent border-b border-accent pb-1"
+        >
+          Read more kind words
+          <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
+        </Link>
+      </Reveal>
+    </Scene>
   );
 }

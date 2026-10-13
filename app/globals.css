@@ -126,9 +126,10 @@ h3 {
 }
 
 .scroll-progress-bar {
+  width: 100%;
   height: 100%;
   background: var(--ink);
-  transition: width 0.1s ease-out;
+  transform-origin: left;
 }
 
 /* Scrollbar */
@@ -149,4 +150,138 @@ h3 {
   background:
     radial-gradient(ellipse 70% 55% at 50% 32%, #3d3d3d 0%, rgba(61, 61, 61, 0) 70%),
     linear-gradient(180deg, #2a2a2a 0%, #161616 100%);
+}
+
+/* ---------- Scenes: one idea per viewport ---------- */
+
+/* Shared heading scale for every scene, so sizes live in one place. */
+.scene-heading {
+  font-family: var(--font-display);
+  font-weight: 500;
+  color: var(--ink);
+  font-size: 3rem;
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+}
+
+@media (min-width: 640px) {
+  .scene-heading { font-size: 3.75rem; }
+}
+
+@media (min-width: 1024px) {
+  .scene-heading { font-size: 4.75rem; }
+}
+
+/* Fade-and-rise as content enters the viewport (toggled by <Reveal>). */
+.reveal {
+  opacity: 0;
+  transform: translateY(2rem);
+  transition:
+    opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Pinned sequence: one item fills the sticky frame at a time. The scroll
+   containers need a non-static position for framer's offset maths. */
+.pinned,
+.htrack {
+  position: relative;
+}
+
+.pinned-frame {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  overflow: hidden;
+}
+
+.pinned-item {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+}
+
+/* Horizontal track: a swipeable snap row by default... */
+.htrack-row {
+  display: flex;
+  gap: 1.25rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  padding-inline: max(1rem, calc((100vw - 80rem) / 2 + 2rem));
+  scroll-padding-inline: max(1rem, calc((100vw - 80rem) / 2 + 2rem));
+}
+
+.htrack-row::-webkit-scrollbar { display: none; }
+
+.htrack-row > * {
+  flex: 0 0 85%;
+  scroll-snap-align: start;
+}
+
+@media (min-width: 640px) {
+  .htrack-row > * { flex-basis: 60%; }
+}
+
+/* ...and a row driven by vertical scroll on large screens. */
+@media (min-width: 1024px) and (prefers-reduced-motion: no-preference) {
+  .htrack {
+    height: var(--track-h, 100svh);
+  }
+
+  .htrack-frame {
+    position: sticky;
+    top: 0;
+    height: 100svh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 5rem;
+  }
+
+  .htrack-row {
+    gap: 2rem;
+    overflow: visible;
+    scroll-snap-type: none;
+  }
+
+  .htrack-row > * { flex-basis: min(34rem, 40vw); }
+}
+
+/* Reduced motion: no scroll-linked animation, everything shown in place. */
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .scroll-linked {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .pinned {
+    height: auto !important;
+  }
+
+  .pinned-frame {
+    position: static;
+    height: auto;
+    overflow: visible;
+  }
+
+  .pinned-item {
+    position: relative;
+    inset: auto;
+    min-height: 100svh;
+  }
 }

@@ -1,4 +1,6 @@
-import { SlashList } from "../components/SlashList";
+import { Plus } from "lucide-react";
+import { Scene } from "../components/Scene";
+import { Reveal } from "../components/motion/Reveal";
 
 // Anonymized on purpose: no client names, links or screenshots. Every figure
 // here must appear in the shareable career inventory.
@@ -7,8 +9,8 @@ const caseStudies = [
     id: "food-ordering",
     title: "Food ordering from your seat at events and food trucks",
     region: "United States",
-    period: "May 2026 – present",
-    role: "Lead engineer, team of 4–5",
+    period: "May 2026 to present",
+    role: "Lead engineer, team of 4-5",
     problem:
       "Fans order from their seats and vendors print tickets in the truck. The platform was heading to launch with prices partly decided by the phone app, open security gaps and no automated safety net.",
     delivered: [
@@ -19,14 +21,13 @@ const caseStudies = [
       "Vendor tools for busy event days: pausing orders, kitchen printing, pickup codes and search",
     ],
     outcome:
-      "I wrote over 95% of the backend changes since joining and shipped 130+ fixes and features through QA. Three security audits found 56 issues, and I fixed 40+ of them. The platform is in its pilot stage.",
-    tech: ["Laravel", "Go", "Stripe", "AWS"],
+      "I wrote over 95% of the backend changes since joining and shipped 130+ fixes and features through QA. Across three security audits, I fixed 100+ security issues. The platform is in its pilot stage.",
   },
   {
     id: "legal-search",
     title: "Searchable contract examples for lawyers, drawn from SEC filings",
     region: "United States",
-    period: "Mar 2022 – Apr 2025",
+    period: "Mar 2022 to Apr 2025",
     role: "Sole engineer",
     problem:
       "Lawyers needed real contract wording, buried across decades of public SEC filings in dozens of formats. The existing product ran on an old site that was hard to extend.",
@@ -40,14 +41,13 @@ const caseStudies = [
     ],
     outcome:
       "One engineer delivered the whole product, 8 major features and 90 capabilities, and indexed between 100,000 and 1 million contract exhibits (reported).",
-    tech: ["Laravel", "Elasticsearch", "Stripe", "Redis"],
   },
   {
     id: "retail-pos",
     title: "Point of sale, delivery and inventory for licensed retailers",
     region: "United States",
-    period: "Aug 2021 – Apr 2023",
-    role: "Lead engineer, team of 2–3",
+    period: "Aug 2021 to Apr 2023",
+    role: "Lead engineer, team of 2-3",
     problem:
       "Licensed retailers sell in-store, by delivery and online, and every regulated sale must be reported to the state exactly once, only within legal selling hours. Getting it wrong puts their licence at risk.",
     delivered: [
@@ -58,14 +58,13 @@ const caseStudies = [
       "Started the wholesale product from the retail platform, and built the public website and self-service onboarding from the first commit",
     ],
     outcome:
-      "Top backend contributor, with 58% of the admin and API code and 50% of the point-of-sale app. Led a team of 2–3, helped with hiring, and kept the platform in step as the company expanded into more US states.",
-    tech: ["Laravel", "Node.js", "AWS"],
+      "Top backend contributor, with 58% of the admin and API code and 50% of the point-of-sale app. Led a team of 2-3, helped with hiring, and kept the platform in step as the company expanded into more US states.",
   },
   {
     id: "tour-catalogue",
     title: "One catalogue for seven tour operators, and a cruise retailer off its legacy site",
     region: "United States",
-    period: "Oct 2023 – Sep 2025",
+    period: "Oct 2023 to Sep 2025",
     role: "Proposed and designed the architecture",
     problem:
       "A cruise and tour retailer sells trips from seven tour operators, each publishing tours and prices in its own format, on its own schedule. Customers need one consistent page, and the whole business ran on an ageing site that every change risked breaking.",
@@ -79,18 +78,18 @@ const caseStudies = [
     ],
     outcome:
       "Tour and search pages became several times faster (reported). I was the #1 contributor to the API and wrote nearly half of the new website's code (749 of 1,579 changes).",
-    tech: ["Laravel", "Next.js", "Redis"],
   },
   {
     id: "ewallet",
     title: "An e-wallet for consumers and merchants, plus a marketplace",
     region: "Singapore",
-    period: "Jun 2020 – Jul 2021",
+    period: "Jun 2020 to Jul 2021",
     role: "Main contributor",
     problem:
       "Customers send money, pay merchants by QR code across several currencies and withdraw to banks. Every transfer has to apply fees and rewards correctly and must never be applied twice.",
     delivered: [
       "The core money movement: transfers, QR payments, fees, rewards and currency conversion, each checked before any money moves and fully undone if a step fails",
+      "Fixed the race conditions a penetration test found: send-money and load-money requests arriving at the same moment could spend the same balance twice. Each transfer is now all-or-nothing, and repeat withdrawal and refund submits are blocked",
       "Card and bank top-ups that verify every payment confirmation and never credit the same payment twice",
       "Withdrawals to banks, with batch processing and exports for the finance team",
       "Sign-up, identity checks and permissions for customers, merchants, agents and admins",
@@ -98,14 +97,13 @@ const caseStudies = [
       "Most of the marketplace seller portal, where sellers in several countries list, ship and get paid through the wallet",
     ],
     outcome:
-      "Fixed a double-spend risk found by a penetration test. Main contributor to the wallet (about 42% of changes) and builder of 81% of the seller portal.",
-    tech: ["CakePHP", "MySQL", "Redis", "AWS"],
+      "Closed the race conditions behind a double-spend risk found by a penetration test. Main contributor to the wallet (about 42% of changes) and builder of 81% of the seller portal.",
   },
   {
     id: "car-rental",
     title: "Car-rental comparison and booking across 10+ suppliers",
     region: "Australia",
-    period: "Mar 2015 – Apr 2020",
+    period: "Mar 2015 to Apr 2020",
     role: "Senior backend developer",
     problem:
       "Travellers compare and book across many rental companies, each with its own system and rules. Airline and airport partners want their own branded sites, and a booking can fail halfway at the supplier, the payment or the email.",
@@ -119,7 +117,6 @@ const caseStudies = [
     ],
     outcome:
       "4M+ rentals in 5 countries, with sub-second responses (reported). One of the two largest contributors to the booking system and admin over five years.",
-    tech: ["Laravel", "AngularJS"],
   },
 ];
 
@@ -127,26 +124,28 @@ const labelClass = "text-[0.6875rem] font-semibold uppercase tracking-[0.14em] t
 
 export function CaseStudies() {
   return (
-    <section id="work" className="bg-white dark:bg-dark-900 border-t border-slate-200 dark:border-dark-600 py-20 lg:py-24">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-2xl mb-12 lg:mb-14">
-          <p className="eyebrow mb-3">Work</p>
-          <h2 className="font-display font-medium text-accent text-4xl lg:text-5xl leading-tight">
-            Six businesses, in their own words
-          </h2>
-          <p className="mt-4 text-lg text-slate-600 dark:text-slate-400">
+    <div id="work">
+      <Scene tone="ash">
+        <Reveal className="max-w-4xl">
+          <p className="eyebrow mb-4">Work</p>
+          <h2 className="scene-heading">Six businesses, in their own words</h2>
+          <p className="mt-6 max-w-2xl text-lg lg:text-xl text-slate-600 dark:text-slate-400">
             What each business needed, what I delivered, and what changed. Client names are left out on purpose.
           </p>
-        </div>
+        </Reveal>
+      </Scene>
 
-        <div>
-          {caseStudies.map((study) => (
-            <article
-              key={study.id}
-              id={study.id}
-              className="scroll-mt-24 grid md:grid-cols-[15rem_1fr] gap-5 md:gap-12 py-11 border-t border-slate-200 dark:border-dark-600 first:border-accent"
-            >
-              <dl className="flex flex-row flex-wrap md:flex-col gap-x-7 gap-y-3 text-sm">
+      {caseStudies.map((study, i) => (
+        <Scene key={study.id} id={study.id} tone={i % 2 === 0 ? "plain" : "ash"}>
+          <article className="grid lg:grid-cols-[1fr_1.05fr] gap-10 lg:gap-16 items-start">
+            <Reveal>
+              <p className="eyebrow mb-5 tabular-nums">
+                Case study {i + 1} of {caseStudies.length}
+              </p>
+              <h3 className="font-display font-medium text-accent text-4xl sm:text-5xl lg:text-[3.5rem] leading-[1.05] tracking-[-0.02em]">
+                {study.title}
+              </h3>
+              <dl className="mt-8 flex flex-wrap gap-x-10 gap-y-4 text-[0.9375rem]">
                 {[
                   ["When", study.period],
                   ["Where", study.region],
@@ -154,36 +153,35 @@ export function CaseStudies() {
                 ].map(([term, value]) => (
                   <div key={term}>
                     <dt className={labelClass}>{term}</dt>
-                    <dd className="mt-0.5 text-accent">{value}</dd>
+                    <dd className="mt-1 text-accent">{value}</dd>
                   </div>
                 ))}
               </dl>
+            </Reveal>
 
-              <div className="max-w-2xl">
-                <h3 className="font-display text-accent text-2xl lg:text-[1.875rem] leading-snug mb-4">{study.title}</h3>
+            <Reveal delay={150}>
+              <p className={`${labelClass} mb-2`}>The problem</p>
+              <p className="text-lg text-slate-700 dark:text-slate-300 leading-relaxed">{study.problem}</p>
 
-                <p className={`${labelClass} mt-5 mb-1.5`}>The problem</p>
-                <p className="text-slate-700 dark:text-slate-300">{study.problem}</p>
+              <p className="mt-8 font-display text-accent text-2xl lg:text-[1.875rem] leading-snug">
+                {study.outcome}
+              </p>
 
-                <p className={`${labelClass} mt-5 mb-1.5`}>What I delivered</p>
-                <ul className="list-disc pl-5 space-y-1 text-slate-700 dark:text-slate-300 marker:text-slate-400">
+              <details className="group mt-8 border-t border-slate-200 dark:border-dark-600 pt-5">
+                <summary className="flex items-center gap-2 cursor-pointer list-none font-semibold text-accent [&::-webkit-details-marker]:hidden">
+                  <Plus className="w-4 h-4 transition-transform group-open:rotate-45" aria-hidden="true" />
+                  See what I delivered
+                </summary>
+                <ul className="mt-4 list-disc pl-5 space-y-1.5 text-slate-700 dark:text-slate-300 marker:text-slate-400">
                   {study.delivered.map((item) => (
                     <li key={item}>{item}</li>
                   ))}
                 </ul>
-
-                <p className="mt-5 px-5 py-4 border-l-2 border-accent bg-slate-50 dark:bg-dark-800 text-accent font-medium">
-                  {study.outcome}
-                </p>
-
-                {study.tech && (
-                  <SlashList items={study.tech} className="mt-4 text-xs text-slate-500 dark:text-slate-400" />
-                )}
-              </div>
-            </article>
-          ))}
-        </div>
-      </div>
-    </section>
+              </details>
+            </Reveal>
+          </article>
+        </Scene>
+      ))}
+    </div>
   );
 }
