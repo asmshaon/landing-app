@@ -18,7 +18,7 @@ Next.js 16 (App Router) + React 19, Tailwind CSS v4 (CSS-first config, no `tailw
 
 ## Architecture
 
-A single-page personal portfolio/landing site for a senior full-stack engineer. It is written for recruiters and non-technical readers: business outcomes, not a skills list.
+A personal portfolio/landing site (the home page plus a `/book-a-call` booking page) for a senior full-stack engineer. It is written for recruiters and non-technical readers: business outcomes, not a skills list.
 
 - `app/page.tsx` composes the page by stacking section components from `app/sections/` in order. The fixed top Navbar has no section links or mobile menu, only the logo, theme toggle and a LinkedIn icon (shown from `xl` up).
 - `app/components/` holds page chrome (Navbar, ScrollProgress). Note: Navbar defines its own inline `ThemeToggle`; `app/components/ThemeToggle.tsx` is currently not imported anywhere.
@@ -29,9 +29,11 @@ A single-page personal portfolio/landing site for a senior full-stack engineer. 
   - Contact is only by booking a Cal.com call. Don't add a contact form, an email address, phone or WhatsApp number, or a map.
   - The call to action reads "Let's talk", never "Contact".
 - Images live in `public/images/`; `next.config.ts` sets `images.unoptimized: true`.
-- SEO: `app/seo.ts` holds the site URL, name, role, headline, description and the `KNOWS_ABOUT` skills list, and every SEO surface reads from it: the `metadata` export and the JSON-LD `Person`/`WebSite` graph in `app/layout.tsx`, `app/opengraph-image.tsx` (the 1200×630 share card, built from `public/images/og-portrait.png`), `app/robots.ts` and `app/sitemap.ts`. When the hero headline or description changes, update `seo.ts` too. Technology names may appear in `KNOWS_ABOUT` because it isn't rendered on the page.
-- Sections are Server Components by default; only interactive ones (Footer, Navbar, ScrollProgress) are `"use client"`.
-- `app/sections/Footer.tsx` exports both `FooterCTA` (the `#contact` section) and `Footer`. `FooterCTA` embeds a Cal.com booking calendar inline via `@calcom/embed-react`. The event is set by the `CAL_LINK` constant (`<username>/<event-slug>`) at the top of the file. The calendar follows the site theme through next-themes' `resolvedTheme`, with its brand colour set to the monochrome ink. There are no API routes and no env vars.
+- SEO: `app/seo.ts` holds the site URL, name, role, headline, description and the `KNOWS_ABOUT` skills list, and every SEO surface reads from it: the `metadata` export and the JSON-LD `Person`/`WebSite` graph in `app/layout.tsx`, `app/opengraph-image.tsx` (the 1200×630 share card, built from `public/images/og-portrait.png`), `app/robots.ts` and `app/sitemap.ts` (which lists `/` and `/book-a-call`). When the hero headline or description changes, update `seo.ts` too. Technology names may appear in `KNOWS_ABOUT` because it isn't rendered on the page.
+- Sections are Server Components by default; only interactive components (Navbar, ScrollProgress, BookingCalendar) are `"use client"`.
+- `app/sections/Footer.tsx` exports both `FooterCTA` (the `#contact` band, whose "Let's talk" button links to `/book-a-call`) and `Footer`.
+- `app/book-a-call/page.tsx` is the booking page: Navbar, the "How the call goes" steps, the calendar and Footer. It sets its own title, canonical and Open Graph URL, and `app/book-a-call/opengraph-image.tsx` re-exports the root share card, because a page-level `openGraph` override drops the inherited image.
+- `app/book-a-call/BookingCalendar.tsx` embeds the Cal.com calendar inline via `@calcom/embed-react`. The event is set by the `CAL_LINK` constant (`<username>/<event-slug>`) at the top of the file. The calendar follows the site theme through next-themes' `resolvedTheme`, with its brand colour set to the monochrome ink. There are no API routes and no env vars.
 
 ## Theming
 
