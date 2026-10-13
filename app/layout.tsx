@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { Inter, Newsreader } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "./providers";
 import {
@@ -14,19 +13,7 @@ import {
   SITE_URL,
 } from "./seo";
 
-const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin"],
-  display: "swap",
-});
 
-const newsreader = Newsreader({
-  variable: "--font-newsreader",
-  subsets: ["latin"],
-  style: ["normal", "italic"],
-  axes: ["opsz"],
-  display: "swap",
-});
 
 const title = `${FULL_NAME} · ${ROLE}`;
 
@@ -118,7 +105,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${newsreader.variable} scroll-smooth`} data-scroll-behavior="smooth" suppressHydrationWarning>
+    <html lang="en" className="scroll-smooth" data-scroll-behavior="smooth" suppressHydrationWarning>
       <body className="min-h-full antialiased">
         <script
           type="application/ld+json"

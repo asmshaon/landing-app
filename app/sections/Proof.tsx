@@ -15,7 +15,7 @@ export function Proof() {
         items={stats.map((stat) => (
           <div key={stat.label} className="text-center">
             <p
-              className={`font-display font-medium text-accent leading-[0.9] tracking-[-0.04em] tabular-nums ${
+              className={`font-display font-semibold text-accent leading-[0.9] tracking-[-0.04em] tabular-nums ${
                 stat.value.length > 4
                   ? "text-[4.5rem] sm:text-[7rem] lg:text-[11rem]"
                   : "text-[7rem] sm:text-[10rem] lg:text-[15rem]"

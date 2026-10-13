@@ -38,7 +38,7 @@ export function Industries() {
         {domains.map((domain) => (
           <li key={domain.name}>
             <ScrollHighlight className="grid lg:grid-cols-[1fr_1.15fr] gap-3 lg:gap-12 items-baseline">
-              <h3 className="font-display font-medium text-accent text-4xl sm:text-5xl lg:text-[3.5rem] leading-[1.05] tracking-[-0.02em]">
+              <h3 className="font-display font-semibold text-accent text-4xl sm:text-5xl lg:text-[3.5rem] leading-[1.05] tracking-[-0.02em]">
                 {domain.name}
               </h3>
               <p className="text-lg lg:text-xl text-slate-600 dark:text-slate-400 leading-relaxed">{domain.built}</p>

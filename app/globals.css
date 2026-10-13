@@ -5,8 +5,11 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-inter);
-  --font-display: var(--font-newsreader), Georgia, "Times New Roman", serif;
+  /* Apple's system font stack, as on apple.com. SF Pro can't be self-hosted (Apple's
+     licence covers its own platforms only), so visitors get SF on Apple devices and
+     Helvetica Neue, Helvetica or Arial elsewhere. */
+  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Icons", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-display: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Icons", "Helvetica Neue", Helvetica, Arial, sans-serif;
 
   /* Monochrome palette. The site uses only black, white and neutral ash greys.
      The dark-*, slate-* and gray-* names are kept for existing utilities, but all
@@ -79,7 +82,7 @@ html {
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  font-family: var(--font-sans);
 }
 
 h1,
@@ -157,7 +160,7 @@ h3 {
 /* Shared heading scale for every scene, so sizes live in one place. */
 .scene-heading {
   font-family: var(--font-display);
-  font-weight: 500;
+  font-weight: 600;
   color: var(--ink);
   font-size: 3rem;
   line-height: 1.02;

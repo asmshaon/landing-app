@@ -53,7 +53,7 @@ export function WhyHireMe() {
               <p className="eyebrow mb-6 tabular-nums">
                 {String(i + 1).padStart(2, "0")} / {String(values.length).padStart(2, "0")}
               </p>
-              <h3 className="font-display font-medium text-accent text-5xl sm:text-7xl lg:text-[7rem] leading-[0.98] tracking-[-0.03em]">
+              <h3 className="font-display font-semibold text-accent text-5xl sm:text-7xl lg:text-[7rem] leading-[0.98] tracking-[-0.03em]">
                 {value.title}
               </h3>
               <p className="mt-8 max-w-3xl font-display text-2xl sm:text-3xl lg:text-[2.5rem] leading-snug text-slate-600 dark:text-slate-400">

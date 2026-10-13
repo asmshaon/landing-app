@@ -48,7 +48,7 @@ A personal portfolio/landing site (the home page plus a `/book-a-call` booking p
 - `app/globals.css` declares `@custom-variant dark (&:is(.dark *))`, so Tailwind `dark:` variants key off the `.dark` class, not the media query. Palette tokens are defined in the `@theme inline` block:
   - `dark-*`, `slate-*` and `gray-*` all resolve to the same neutral ash scale. The names are kept for existing utilities.
   - `accent` is theme-aware ink (`--ink`): near-black in light and near-white in dark. `ink-inverse` is its opposite.
-  - `font-display` is the Newsreader serif used for headings.
+  - Fonts are Apple's system stack (as on apple.com), set as `--font-sans` and `--font-display` in `@theme`: SF Pro on Apple devices, Helvetica Neue/Helvetica/Arial elsewhere (Nimbus Sans on Linux). SF Pro can't be self-hosted under Apple's licence, so there is no web font to load. Headings use weight 600 and no italics.
   - Shared plain-CSS classes (`btn-primary`, `eyebrow`, scroll progress styles) are defined further down the same file.
 - Style both light and dark variants when adding UI (pattern: `bg-slate-50 dark:bg-dark-800`). Every section follows the theme except `Footer`, which stays black in both themes.
 

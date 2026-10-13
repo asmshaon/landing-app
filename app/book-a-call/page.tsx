@@ -38,7 +38,7 @@ export default function BookACall() {
         {/* Calendar spans the full width so Cal.com shows the time slots beside the month, not below it. */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-12">
           <div>
-            <h1 className="mb-8 font-display font-medium text-accent text-4xl lg:text-[3.25rem] leading-[1.05]">
+            <h1 className="mb-8 font-display font-semibold text-accent text-4xl lg:text-[3.25rem] leading-[1.05]">
               Tell me what you&apos;re working on.
             </h1>
 

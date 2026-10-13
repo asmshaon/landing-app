@@ -142,7 +142,7 @@ export function CaseStudies() {
               <p className="eyebrow mb-5 tabular-nums">
                 Case study {i + 1} of {caseStudies.length}
               </p>
-              <h3 className="font-display font-medium text-accent text-4xl sm:text-5xl lg:text-[3.5rem] leading-[1.05] tracking-[-0.02em]">
+              <h3 className="font-display font-semibold text-accent text-4xl sm:text-5xl lg:text-[3.5rem] leading-[1.05] tracking-[-0.02em]">
                 {study.title}
               </h3>
               <dl className="mt-8 flex flex-wrap gap-x-10 gap-y-4 text-[0.9375rem]">

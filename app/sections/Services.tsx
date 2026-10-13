@@ -62,7 +62,7 @@ export function Services() {
                 {String(i + 1).padStart(2, "0")}
               </span>
             </div>
-            <h3 className="font-display font-medium text-accent text-3xl lg:text-[2.5rem] leading-[1.08] tracking-[-0.015em] mb-4">
+            <h3 className="font-display font-semibold text-accent text-3xl lg:text-[2.5rem] leading-[1.08] tracking-[-0.015em] mb-4">
               {area.title}
             </h3>
             <p className="text-lg text-slate-600 dark:text-slate-400">{area.description}</p>

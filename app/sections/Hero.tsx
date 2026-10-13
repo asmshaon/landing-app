@@ -50,15 +50,15 @@ export function Hero() {
                 />
               </div>
             </div>
-            <figcaption className="mt-4 text-center font-display italic text-[0.9375rem] leading-snug text-slate-600 dark:text-slate-400">
+            <figcaption className="mt-4 text-center text-[0.9375rem] leading-snug text-slate-600 dark:text-slate-400">
               The engineer you call when it has to work.
             </figcaption>
           </figure>
 
           <div>
-            <h1 className="font-display font-medium text-accent text-5xl sm:text-6xl lg:text-[5.25rem] xl:text-[6rem] leading-[1] tracking-[-0.025em]">
+            <h1 className="font-display font-semibold text-accent text-5xl sm:text-6xl lg:text-[5.25rem] xl:text-[6rem] leading-[1] tracking-[-0.025em]">
               I build software around what your business needs,{" "}
-              <em className="text-slate-500 dark:text-slate-400">not the other way round.</em>
+              <em className="not-italic text-slate-500 dark:text-slate-400">not the other way round.</em>
             </h1>
 
             <p className="mt-8 max-w-2xl text-lg lg:text-xl text-slate-600 dark:text-slate-400 leading-relaxed">
