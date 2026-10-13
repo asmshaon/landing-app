@@ -39,7 +39,7 @@ export default function BookACall() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-12">
           <div>
             <h1 className="mb-8 font-display font-semibold text-accent text-4xl lg:text-[3.25rem] leading-[1.05]">
-              Tell me what you&apos;re working on.
+              What business challenge are you looking to solve?
             </h1>
 
             <p className="eyebrow mb-2">How the call goes</p>
