@@ -51,7 +51,7 @@ export function Hero() {
               </div>
             </div>
             <figcaption className="mt-4 text-center text-[0.9375rem] leading-snug text-slate-600 dark:text-slate-400">
-              The engineer you call when it has to work.
+              The engineer you call when failure isn&apos;t an option.
             </figcaption>
           </figure>
 
