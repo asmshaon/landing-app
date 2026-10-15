@@ -1,7 +1,7 @@
 import { Scene } from "../components/Scene";
 import { Reveal } from "../components/motion/Reveal";
 
-const countries = ["USA", "Australia", "Canada", "Saudi Arabia", "Thailand", "Singapore"];
+const countries = ["USA", "Australia", "Canada", "Singapore", "Thailand", "Saudi Arabia"];
 
 export function ClientLogos() {
   return (

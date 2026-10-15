@@ -51,7 +51,7 @@ export function Testimonials() {
       <Reveal>
         <figure className="max-w-5xl">
           <figcaption className="flex flex-wrap items-center gap-x-5 gap-y-2 mb-8 lg:mb-10">
-            <span className="eyebrow">Why clients come back</span>
+            <span className="eyebrow">Don&apos;t take my word for it</span>
             <Stars />
           </figcaption>
           <Quote text={testimonials[FEATURED].text} />

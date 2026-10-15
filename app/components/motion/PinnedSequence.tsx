@@ -34,8 +34,9 @@ function PinnedItem({
   progress: MotionValue<number>;
   children: ReactNode;
 }) {
-  // Split the scroll into equal windows. Neighbours crossfade across each boundary,
-  // so the screen is never blank. The first item starts visible, the last stays.
+  // Split the scroll into equal windows. Each item fades in and out inside its own
+  // window, so neighbours never overlap (large text crossfading reads as a jumble).
+  // The first item starts visible, the last stays.
   const step = 1 / count;
   const start = index * step;
   const end = start + step;
@@ -43,7 +44,7 @@ function PinnedItem({
   const isFirst = index === 0;
   const isLast = index === count - 1;
 
-  const input = [start - edge, start + edge, end - edge, end + edge];
+  const input = [start, start + edge, end - edge, end];
   // Function form on purpose: framer's accelerated opacity path left these stuck at
   // their first value when driven by a multi-step scroll range.
   const fade = transform(input, [isFirst ? 1 : 0, 1, 1, isLast ? 1 : 0]);

@@ -1,10 +1,10 @@
 import { PinnedSequence } from "../components/motion/PinnedSequence";
 
 const stats = [
-  { value: "16+", label: "years in production" },
-  { value: "4M+", label: "rentals, sub-second" },
+  { value: "16+", label: "years building software that businesses run on" },
+  { value: "4M+", label: "car rentals booked in 5 countries, with responses in under a second" },
   { value: "Up to 1M", label: "contract exhibits indexed, as the only engineer" },
-  { value: "100+", label: "security issues fixed" },
+  { value: "100+", label: "security issues fixed, including race-condition attacks" },
 ];
 
 // One statistic fills the screen at a time as the visitor scrolls.
