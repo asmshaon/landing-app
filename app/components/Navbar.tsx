@@ -5,6 +5,7 @@ import { useTheme } from "next-themes";
 import { Sun, Moon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 function ThemeToggle() {
   const { theme, setTheme } = useTheme();
@@ -35,6 +36,9 @@ function ThemeToggle() {
 }
 
 export function Navbar() {
+  // The booking page is where "Book a call" leads, so the button is hidden there.
+  const onBookingPage = usePathname() === "/book-a-call";
+
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-white/85 dark:bg-dark-900/85 backdrop-blur-xl border-b border-slate-200 dark:border-dark-600">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -64,7 +68,15 @@ export function Navbar() {
           </Link>
 
           {/* Right Side */}
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-1 sm:gap-3">
+            {!onBookingPage && (
+              <Link
+                href="/book-a-call"
+                className="btn-primary inline-flex shrink-0 items-center whitespace-nowrap rounded-full px-3.5 py-2 text-sm font-semibold sm:px-5"
+              >
+                Book a call
+              </Link>
+            )}
             <ThemeToggle />
           </div>
         </div>

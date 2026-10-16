@@ -145,7 +145,7 @@ export default function CaseStudiesPage() {
               href="/book-a-call"
               className="btn-primary mt-10 inline-flex items-center gap-2 rounded-full px-8 py-4 text-lg font-semibold"
             >
-              Let&apos;s talk
+              Book a call
               <ArrowRight className="w-5 h-5" aria-hidden="true" />
             </Link>
           </Reveal>
