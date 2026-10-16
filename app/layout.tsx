@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { ThemeProvider } from "./providers";
+import { BackToTop } from "./components/BackToTop";
 import {
   DESCRIPTION,
   FULL_NAME,
@@ -115,7 +116,10 @@ export default function RootLayout({
         <noscript>
           <style>{`.reveal{opacity:1;transform:none}`}</style>
         </noscript>
-        <ThemeProvider>{children}</ThemeProvider>
+        <ThemeProvider>
+          {children}
+          <BackToTop />
+        </ThemeProvider>
       </body>
     </html>
   );

@@ -53,7 +53,7 @@ export default function TestimonialsPage() {
 
         <Scene className="text-center">
           <Reveal className="flex flex-col items-center">
-            <h2 className="scene-heading max-w-4xl">Let&apos;s make your project the next one.</h2>
+            <h2 className="scene-heading max-w-4xl">Your project could be the next success story.</h2>
             <Link
               href="/book-a-call"
               className="btn-primary mt-10 inline-flex items-center gap-2 rounded-full px-8 py-4 text-lg font-semibold"

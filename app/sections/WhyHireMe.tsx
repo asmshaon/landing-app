@@ -1,4 +1,5 @@
 import { PinnedSequence } from "../components/motion/PinnedSequence";
+import { accent } from "../components/accents";
 
 // Each trait is backed by a client testimonial ("Always positive", "met (or beat) deadlines",
 // "proactive approach") or the career inventory: the urgency
@@ -38,11 +39,13 @@ const values = [
   },
 ];
 
-// The heading, then each value, fill the screen one at a time as the visitor scrolls.
+// The heading, then each value, fill the screen one at a time as the visitor scrolls,
+// under a pinned "My DNA" header with a counter and progress bar.
 export function WhyHireMe() {
   return (
     <section id="why-me" className="bg-slate-50 dark:bg-dark-800">
       <PinnedSequence
+        chapter={{ label: "My DNA", title: "The habits behind the work", skip: 1 }}
         items={[
           <div key="intro" className="max-w-4xl">
             <p className="eyebrow mb-4">My DNA</p>
@@ -50,10 +53,11 @@ export function WhyHireMe() {
           </div>,
           ...values.map((value, i) => (
             <div key={value.title} className="max-w-5xl">
-              <p className="eyebrow mb-6 tabular-nums">
-                {String(i + 1).padStart(2, "0")} / {String(values.length).padStart(2, "0")}
+              {/* The pinned header shows the count; this copy is for screen readers and reduced motion. */}
+              <p className="pinned-static-only eyebrow mb-6 tabular-nums">
+                Habit {String(i + 1).padStart(2, "0")} / {String(values.length).padStart(2, "0")}
               </p>
-              <h3 className="font-display font-semibold text-accent text-5xl sm:text-7xl lg:text-[7rem] leading-[0.98] tracking-[-0.03em]">
+              <h3 className={`font-display font-semibold ${accent(i)} text-5xl sm:text-7xl lg:text-[7rem] leading-[0.98] tracking-[-0.03em]`}>
                 {value.title}
               </h3>
               <p className="mt-8 max-w-3xl font-display text-2xl sm:text-3xl lg:text-[2.5rem] leading-snug text-slate-600 dark:text-slate-400">

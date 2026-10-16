@@ -1,5 +1,7 @@
 import { PinnedSequence } from "../components/motion/PinnedSequence";
+import { accent } from "../components/accents";
 
+// Each number gets its own colour from the shared accent palette (components/accents.ts).
 const stats = [
   { value: "16+", label: "years building software that businesses run on" },
   { value: "4M+", label: "car rentals booked in 5 countries, with responses in under a second" },
@@ -12,10 +14,10 @@ export function Proof() {
   return (
     <section aria-label="Highlights" className="bg-slate-50 dark:bg-dark-800">
       <PinnedSequence
-        items={stats.map((stat) => (
+        items={stats.map((stat, i) => (
           <div key={stat.label} className="text-center">
             <p
-              className={`font-display font-semibold text-accent leading-[0.9] tracking-[-0.04em] tabular-nums ${
+              className={`font-display font-semibold ${accent(i)} leading-[0.9] tracking-[-0.04em] tabular-nums ${
                 stat.value.length > 4
                   ? "text-[4.5rem] sm:text-[7rem] lg:text-[11rem]"
                   : "text-[7rem] sm:text-[10rem] lg:text-[15rem]"

@@ -1,10 +1,11 @@
-import { Plus } from "lucide-react";
+import Link from "next/link";
+import { ArrowRight, Plus } from "lucide-react";
 import { Scene } from "../components/Scene";
 import { Reveal } from "../components/motion/Reveal";
 
 // Anonymized on purpose: no client names, links or screenshots. Every figure
 // here must appear in the shareable career inventory.
-const caseStudies = [
+export const caseStudies = [
   {
     id: "food-ordering",
     title: "Food ordering from your seat at events and food trucks",
@@ -120,68 +121,74 @@ const caseStudies = [
   },
 ];
 
-const labelClass = "text-[0.6875rem] font-semibold uppercase tracking-[0.14em] text-slate-500 dark:text-slate-400";
+export type CaseStudy = (typeof caseStudies)[number];
+
+export const labelClass = "text-[0.6875rem] font-semibold uppercase tracking-[0.14em] text-slate-500 dark:text-slate-400";
+
+// When, where and role, shared by the home page and /case-studies.
+export function StudyFacts({ study, className }: { study: CaseStudy; className?: string }) {
+  return (
+    <dl className={`flex flex-wrap gap-x-10 gap-y-4 text-[0.9375rem] ${className ?? ""}`}>
+      {[
+        ["When", study.period],
+        ["Where", study.region],
+        ["Role", study.role],
+      ].map(([term, value]) => (
+        <div key={term}>
+          <dt className={labelClass}>{term}</dt>
+          <dd className="mt-1 text-accent">{value}</dd>
+        </div>
+      ))}
+    </dl>
+  );
+}
+
+// The home page shows one featured study; the full set lives on /case-studies.
+const FEATURED = 0;
 
 export function CaseStudies() {
+  const study = caseStudies[FEATURED];
+
   return (
-    <div id="work">
-      <Scene tone="ash">
-        <Reveal className="max-w-4xl">
-          <p className="eyebrow mb-4">Work</p>
-          <h2 className="scene-heading">Six businesses, in their own words</h2>
-          <p className="mt-6 max-w-2xl text-lg lg:text-xl text-slate-600 dark:text-slate-400">
-            What each business needed, what I delivered, and what changed. Client names are left out on purpose.
-          </p>
+    <Scene id="work" tone="ash">
+      <article className="grid lg:grid-cols-[1fr_1.05fr] gap-10 lg:gap-16 items-start">
+        <Reveal>
+          <p className="eyebrow mb-5">Featured case study</p>
+          <h2 className="font-display font-semibold text-accent text-4xl sm:text-5xl lg:text-[3.5rem] leading-[1.05] tracking-[-0.02em]">
+            {study.title}
+          </h2>
+          <StudyFacts study={study} className="mt-8" />
         </Reveal>
-      </Scene>
 
-      {caseStudies.map((study, i) => (
-        <Scene key={study.id} id={study.id} tone={i % 2 === 0 ? "plain" : "ash"}>
-          <article className="grid lg:grid-cols-[1fr_1.05fr] gap-10 lg:gap-16 items-start">
-            <Reveal>
-              <p className="eyebrow mb-5 tabular-nums">
-                Case study {i + 1} of {caseStudies.length}
-              </p>
-              <h3 className="font-display font-semibold text-accent text-4xl sm:text-5xl lg:text-[3.5rem] leading-[1.05] tracking-[-0.02em]">
-                {study.title}
-              </h3>
-              <dl className="mt-8 flex flex-wrap gap-x-10 gap-y-4 text-[0.9375rem]">
-                {[
-                  ["When", study.period],
-                  ["Where", study.region],
-                  ["Role", study.role],
-                ].map(([term, value]) => (
-                  <div key={term}>
-                    <dt className={labelClass}>{term}</dt>
-                    <dd className="mt-1 text-accent">{value}</dd>
-                  </div>
-                ))}
-              </dl>
-            </Reveal>
+        <Reveal delay={150}>
+          <p className={`${labelClass} mb-2`}>The problem</p>
+          <p className="text-lg text-slate-700 dark:text-slate-300 leading-relaxed">{study.problem}</p>
 
-            <Reveal delay={150}>
-              <p className={`${labelClass} mb-2`}>The problem</p>
-              <p className="text-lg text-slate-700 dark:text-slate-300 leading-relaxed">{study.problem}</p>
+          <p className="mt-8 font-display text-accent text-2xl lg:text-[1.875rem] leading-snug">
+            {study.outcome}
+          </p>
 
-              <p className="mt-8 font-display text-accent text-2xl lg:text-[1.875rem] leading-snug">
-                {study.outcome}
-              </p>
+          <details className="group mt-8 border-t border-slate-200 dark:border-dark-600 pt-5">
+            <summary className="flex items-center gap-2 cursor-pointer list-none font-semibold text-accent [&::-webkit-details-marker]:hidden">
+              <Plus className="w-4 h-4 transition-transform group-open:rotate-45" aria-hidden="true" />
+              See what I delivered
+            </summary>
+            <ul className="mt-4 list-disc pl-5 space-y-1.5 text-slate-700 dark:text-slate-300 marker:text-slate-400">
+              {study.delivered.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+          </details>
 
-              <details className="group mt-8 border-t border-slate-200 dark:border-dark-600 pt-5">
-                <summary className="flex items-center gap-2 cursor-pointer list-none font-semibold text-accent [&::-webkit-details-marker]:hidden">
-                  <Plus className="w-4 h-4 transition-transform group-open:rotate-45" aria-hidden="true" />
-                  See what I delivered
-                </summary>
-                <ul className="mt-4 list-disc pl-5 space-y-1.5 text-slate-700 dark:text-slate-300 marker:text-slate-400">
-                  {study.delivered.map((item) => (
-                    <li key={item}>{item}</li>
-                  ))}
-                </ul>
-              </details>
-            </Reveal>
-          </article>
-        </Scene>
-      ))}
-    </div>
+          <Link
+            href="/case-studies"
+            className="group mt-10 inline-flex items-center gap-2 font-semibold text-accent border-b border-accent pb-1"
+          >
+            See all {caseStudies.length} case studies
+            <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
+          </Link>
+        </Reveal>
+      </article>
+    </Scene>
   );
 }

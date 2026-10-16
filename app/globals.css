@@ -211,6 +211,35 @@ h3 {
   align-items: center;
 }
 
+/* Section header pinned above the items (PinnedSequence's `chapter`), clear of the navbar. */
+.pinned-chapter {
+  position: absolute;
+  top: 6rem;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* With a header, centre items in the space below it so exiting items don't drift under it. */
+.has-chapter .pinned-item { padding-top: 8rem; }
+
+@media (min-width: 1024px) {
+  .pinned-chapter { top: 7.5rem; }
+  .has-chapter .pinned-item { padding-top: 10rem; }
+}
+
+/* Visually hidden while the pinned header shows the count (still read by screen readers);
+   shown when reduced motion stacks the items and hides that header. */
+.pinned-static-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
 /* Horizontal track: a swipeable snap row by default... */
 .htrack-row {
   display: flex;
@@ -286,5 +315,22 @@ h3 {
     position: relative;
     inset: auto;
     min-height: 100svh;
+  }
+
+  .pinned-chapter {
+    display: none;
+  }
+
+  .has-chapter .pinned-item {
+    padding-top: 0;
+  }
+
+  .pinned-static-only {
+    position: static;
+    width: auto;
+    height: auto;
+    overflow: visible;
+    clip-path: none;
+    white-space: normal;
   }
 }
