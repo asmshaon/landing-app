@@ -229,6 +229,17 @@ h3 {
   .has-chapter .pinned-item { padding-top: 10rem; }
 }
 
+/* Phones: sit items about a third of the way down instead of dead centre. Centred, the top
+   half of the frame scrolls in empty, leaving a near-blank screen before the first item. */
+@media (max-width: 767px) {
+  .pinned-item {
+    align-items: flex-start;
+    padding-top: 28svh;
+  }
+
+  .has-chapter .pinned-item { padding-top: calc(8rem + 6svh); }
+}
+
 /* Visually hidden while the pinned header shows the count (still read by screen readers);
    shown when reduced motion stacks the items and hides that header. */
 .pinned-static-only {
@@ -315,6 +326,8 @@ h3 {
     position: relative;
     inset: auto;
     min-height: 100svh;
+    align-items: center;
+    padding-top: 0;
   }
 
   .pinned-chapter {

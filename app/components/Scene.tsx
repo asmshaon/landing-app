@@ -8,7 +8,8 @@ const tones = {
 
 type SceneTone = keyof typeof tones;
 
-// One idea per viewport: a full-height band with its content centered.
+// One idea per viewport: a full-height band with its content centered. On phones it sizes
+// to its content instead, since short content centred in a full screen leaves big empty bands.
 export function Scene({
   id,
   tone = "plain",
@@ -21,7 +22,7 @@ export function Scene({
   children: ReactNode;
 }) {
   return (
-    <section id={id} className={cn("min-h-svh flex items-center py-24 lg:py-32", tones[tone], className)}>
+    <section id={id} className={cn("md:min-h-svh flex items-center py-20 md:py-24 lg:py-32", tones[tone], className)}>
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">{children}</div>
     </section>
   );
