@@ -1,4 +1,4 @@
-import { Compass, Eye, Globe, Lightbulb, MessageCircle, Rocket, Target, Users, Zap } from "lucide-react";
+import { Compass, Eye, Globe, Lightbulb, MessageCircle, Plus, Rocket, Target, Users, Zap } from "lucide-react";
 import { Scene } from "../components/Scene";
 import { Reveal } from "../components/motion/Reveal";
 import { accent } from "../components/accents";
@@ -82,6 +82,9 @@ const hubPositions = [
   { x: 25, y: 17 },
 ];
 
+// Non-breaking hyphens in titles, so "outcome-focused" stays together when a title wraps.
+const keepHyphens = (text: string) => text.replaceAll("-", "\u2011");
+
 // How far along each spoke the line is drawn (1 = all the way to the habit's centre).
 const SPOKE = 0.62;
 
@@ -89,7 +92,7 @@ const iconTile =
   "flex w-11 h-11 shrink-0 items-center justify-center rounded-xl border border-slate-200 dark:border-dark-600 bg-white dark:bg-dark-900";
 
 // All nine habits on one screen. From lg up: a hub diagram, with "My DNA" in the centre and the
-// habits around it on spokes. Below lg: a card list with the full descriptions.
+// habits around it on spokes. Below lg: cards with the same summaries, each opening to the full description.
 export function WhyHireMe() {
   return (
     <Scene id="why-me" className="lg:py-16">
@@ -147,8 +150,7 @@ export function WhyHireMe() {
                     <Icon className={`w-5 h-5 ${accent(i)}`} strokeWidth={1.75} aria-hidden="true" />
                   </span>
                   <h3 className="mt-3 font-display text-base xl:text-lg font-semibold leading-snug text-accent">
-                    {/* Non-breaking hyphens, so "outcome-focused" never splits across lines. */}
-                    {title.replaceAll("-", "\u2011")}
+                    {keepHyphens(title)}
                   </h3>
                   <p className="mt-1 text-balance text-[0.8125rem] xl:text-sm leading-snug text-slate-600 dark:text-slate-400">{summary}</p>
                 </div>
@@ -158,20 +160,32 @@ export function WhyHireMe() {
         </div>
       </Reveal>
 
-      {/* Card list for tablets and phones */}
-      <ul className="mt-10 grid sm:grid-cols-2 gap-3 sm:gap-4 lg:hidden">
-        {values.map(({ icon: Icon, title, description }, i) => (
+      {/* Tablets and phones: one card per habit showing the summary; tap to open the full description. */}
+      <ul className="mt-10 grid sm:grid-cols-2 md:grid-cols-3 items-start gap-3 sm:gap-4 lg:hidden">
+        {values.map(({ icon: Icon, title, summary, description }, i) => (
           <li key={title}>
-            <Reveal delay={80 + i * 60} className="h-full">
-              <div className="h-full rounded-2xl border border-slate-200 dark:border-dark-600 bg-slate-50 dark:bg-dark-800 p-4 sm:p-5">
-                <div className="flex items-center gap-3">
+            <Reveal delay={80 + i * 60}>
+              <details className="group rounded-2xl border border-slate-200 dark:border-dark-600 bg-slate-50 dark:bg-dark-800">
+                <summary className="grid cursor-pointer list-none grid-cols-[auto_1fr_auto] md:grid-cols-[1fr_auto] items-start gap-3 rounded-2xl p-4 sm:p-5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent [&::-webkit-details-marker]:hidden">
                   <span className={iconTile}>
                     <Icon className={`w-5 h-5 ${accent(i)}`} strokeWidth={1.75} aria-hidden="true" />
                   </span>
-                  <h3 className="font-display text-lg font-semibold leading-snug text-accent">{title}</h3>
-                </div>
-                <p className="mt-3 text-[0.9375rem] leading-relaxed text-slate-600 dark:text-slate-400">{description}</p>
-              </div>
+                  {/* Phones: icon, text, plus in one row. Tablets: icon and plus on top, text below. */}
+                  <span className="min-w-0 md:col-span-2 md:row-start-2 md:mt-1">
+                    <h3 className="font-display text-lg font-semibold leading-snug text-accent">{keepHyphens(title)}</h3>
+                    <span className="mt-1 block text-[0.9375rem] leading-snug text-slate-600 dark:text-slate-400">
+                      {summary}
+                    </span>
+                  </span>
+                  <Plus
+                    className="mt-1.5 md:mt-3 md:col-start-2 md:row-start-1 w-4 h-4 shrink-0 text-slate-400 transition-transform group-open:rotate-45 group-open:text-accent"
+                    aria-hidden="true"
+                  />
+                </summary>
+                <p className="-mt-1 px-4 pb-4 sm:px-5 sm:pb-5 pl-[4.25rem] sm:pl-[4.5rem] md:pl-5 text-[0.9375rem] leading-relaxed text-slate-700 dark:text-slate-300">
+                  {description}
+                </p>
+              </details>
             </Reveal>
           </li>
         ))}
