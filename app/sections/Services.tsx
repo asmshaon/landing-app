@@ -41,11 +41,11 @@ export function Services() {
       <HorizontalTrack
         header={
           <Reveal className="max-w-5xl">
-            <p className="eyebrow mb-4">What I Do</p>
+            <p className="eyebrow mb-4">Where I add value</p>
             <h2 className="scene-heading">Systems that businesses run on every day</h2>
             <p className="mt-6 max-w-3xl text-lg lg:text-xl text-slate-600 dark:text-slate-400">
-              I join a team and take ownership of the parts where the business can&apos;t afford
-              mistakes: money, bookings, supplier data and the old systems that still hold it all
+              I join a team and take ownership of the parts the business needs to get right every
+              time: money, bookings, supplier data and the old systems that still hold it all
               together.
             </p>
           </Reveal>

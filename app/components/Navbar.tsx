@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, type MouseEvent } from "react";
 import { useTheme } from "next-themes";
 import { Sun, Moon } from "lucide-react";
 import Image from "next/image";
@@ -36,19 +36,26 @@ function ThemeToggle() {
 }
 
 export function Navbar() {
+  const pathname = usePathname();
   // The booking page is where "Book a call" leads, so the button is hidden there.
-  const onBookingPage = usePathname() === "/book-a-call";
+  const onBookingPage = pathname === "/book-a-call";
+
+  // On the home page the logo links to the current URL, which Next.js doesn't scroll for,
+  // so scroll back to the hero here. Elsewhere the link navigates home as usual.
+  const onLogoClick = (event: MouseEvent<HTMLAnchorElement>) => {
+    if (pathname !== "/" || event.metaKey || event.ctrlKey || event.shiftKey || event.button !== 0) return;
+    event.preventDefault();
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    window.scrollTo({ top: 0, behavior: reduce ? "auto" : "smooth" });
+    if (window.location.hash) history.replaceState(null, "", "/");
+  };
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-white/85 dark:bg-dark-900/85 backdrop-blur-xl border-b border-slate-200 dark:border-dark-600">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
-          <Link
-            href="/"
-            rel="noopener noreferrer"
-            className="flex items-center gap-[11px]"
-          >
+          <Link href="/" onClick={onLogoClick} className="flex items-center gap-[11px]">
             <Image
               src="/images/abu-logo.png"
               alt=""

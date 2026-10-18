@@ -1,5 +1,5 @@
 // The site's only chromatic colours: one family of deep corporate blues for big display text
-// (Proof's stats, WhyHireMe's habits), with a lighter shade in dark mode. Everything else stays
+// (Proof's stats, WhyHireMe's habit icons), with a lighter shade in dark mode. Everything else stays
 // monochrome.
 export const ACCENTS = [
   "text-blue-900 dark:text-blue-300", // navy

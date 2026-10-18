@@ -211,24 +211,6 @@ h3 {
   align-items: center;
 }
 
-/* Section header pinned above the items (PinnedSequence's `chapter`), clear of the navbar. */
-.pinned-chapter {
-  position: absolute;
-  top: 6rem;
-  left: 0;
-  right: 0;
-  z-index: 1;
-  pointer-events: none;
-}
-
-/* With a header, centre items in the space below it so exiting items don't drift under it. */
-.has-chapter .pinned-item { padding-top: 8rem; }
-
-@media (min-width: 1024px) {
-  .pinned-chapter { top: 7.5rem; }
-  .has-chapter .pinned-item { padding-top: 10rem; }
-}
-
 /* Phones: sit items about a third of the way down instead of dead centre. Centred, the top
    half of the frame scrolls in empty, leaving a near-blank screen before the first item. */
 @media (max-width: 767px) {
@@ -236,30 +218,29 @@ h3 {
     align-items: flex-start;
     padding-top: 28svh;
   }
-
-  .has-chapter .pinned-item { padding-top: calc(8rem + 6svh); }
-}
-
-/* Visually hidden while the pinned header shows the count (still read by screen readers);
-   shown when reduced motion stacks the items and hides that header. */
-.pinned-static-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  clip-path: inset(50%);
-  white-space: nowrap;
 }
 
 /* Horizontal track: a swipeable snap row by default... */
 .htrack-row {
+  --htrack-pad: max(1rem, calc((100vw - 80rem) / 2 + 2rem));
+  --htrack-gap: 1.25rem;
   display: flex;
-  gap: 1.25rem;
+  gap: var(--htrack-gap);
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   scrollbar-width: none;
-  padding-inline: max(1rem, calc((100vw - 80rem) / 2 + 2rem));
-  scroll-padding-inline: max(1rem, calc((100vw - 80rem) / 2 + 2rem));
+  padding-left: var(--htrack-pad);
+  scroll-padding-inline: var(--htrack-pad);
+}
+
+/* Trailing space after the last card, equal to the gap between cards. It's a spacer rather
+   than padding-right, because end padding isn't counted in a flex row's scroll width and the
+   last card ended flush with the screen edge. The flex gap supplies the space; the spacer is
+   1px wide (a zero-width item and its gap get dropped) and pulled back by 1px. */
+.htrack-row::after {
+  content: "";
+  flex: 0 0 1px;
+  margin-left: -1px;
 }
 
 .htrack-row::-webkit-scrollbar { display: none; }
@@ -291,7 +272,7 @@ h3 {
   }
 
   .htrack-row {
-    gap: 2rem;
+    --htrack-gap: 2rem;
     overflow: visible;
     scroll-snap-type: none;
   }
@@ -328,22 +309,5 @@ h3 {
     min-height: 100svh;
     align-items: center;
     padding-top: 0;
-  }
-
-  .pinned-chapter {
-    display: none;
-  }
-
-  .has-chapter .pinned-item {
-    padding-top: 0;
-  }
-
-  .pinned-static-only {
-    position: static;
-    width: auto;
-    height: auto;
-    overflow: visible;
-    clip-path: none;
-    white-space: normal;
   }
 }

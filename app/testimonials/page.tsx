@@ -28,7 +28,7 @@ export default function TestimonialsPage() {
         <Scene>
           <Reveal className="max-w-4xl">
             <p className="eyebrow mb-4">Kind words</p>
-            <h1 className="scene-heading">Don&apos;t take my word for it</h1>
+            <h1 className="scene-heading">In my clients&apos; own words</h1>
             <p className="mt-6 max-w-2xl text-lg lg:text-xl text-slate-600 dark:text-slate-400">
               A few words from clients I&apos;ve worked with, some of them more than once.
             </p>

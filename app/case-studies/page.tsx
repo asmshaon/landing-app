@@ -139,7 +139,7 @@ export default function CaseStudiesPage() {
           <Reveal className="flex flex-col items-center">
             <h2 className="scene-heading max-w-4xl">Facing a problem like one of these?</h2>
             <p className="mt-6 max-w-xl text-lg lg:text-xl text-slate-600 dark:text-slate-400">
-              Book a 30-minute call and tell me about it. You don&apos;t need to prepare anything.
+              Book a 30-minute call and tell me about it. A rough idea is all you need to bring.
             </p>
             <Link
               href="/book-a-call"

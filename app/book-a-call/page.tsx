@@ -26,7 +26,7 @@ const steps = [
   },
   {
     title: "You get a straight answer",
-    detail: "If I can help, I'll tell you how I'd approach it. If I'm not the right person for it, I'll say so.",
+    detail: "If I can help, I'll tell you how I'd approach it. Either way, you'll get an honest view of the best way forward.",
   },
 ];
 

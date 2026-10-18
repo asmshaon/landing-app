@@ -47,11 +47,11 @@ export function Quote({ text }: { text: string }) {
 // One featured quote, with a link to the full set so interest shows up as visits to /testimonials.
 export function Testimonials() {
   return (
-    <Scene id="testimonials">
+    <Scene id="testimonials" tone="ash">
       <Reveal>
         <figure className="max-w-5xl">
           <figcaption className="flex flex-wrap items-center gap-x-5 gap-y-2 mb-8 lg:mb-10">
-            <span className="eyebrow">Don&apos;t take my word for it</span>
+            <span className="eyebrow">In my clients&apos; own words</span>
             <Stars />
           </figcaption>
           <Quote text={testimonials[FEATURED].text} />
